@@ -1,4 +1,4 @@
-# 📱 SAÜPORTAL Mobile
+#  SAÜPORTAL Mobile
 
 A **mobile adaptation** of the **SAÜPORTAL** system, developed under the guidance of academic members from **Sakarya University UZEM**.
 
@@ -15,7 +15,7 @@ A **mobile adaptation** of the **SAÜPORTAL** system, developed under the guidan
 - React Native (Expo)
 - TypeScript
 
-📌 *This project is currently under development and will be expanded with more features including notifications, offline access, and secure login integration.*
+*This project is currently under development and will be expanded with more features including notifications, offline access, and secure login integration.*
 
 ---
 
