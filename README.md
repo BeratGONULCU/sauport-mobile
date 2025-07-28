@@ -2,16 +2,16 @@
 
 A **mobile adaptation** of the **SAÜPORTAL** system, developed under the guidance of academic members from **Sakarya University UZEM**.
 
-🎯 This application is designed to provide students with **quick and easy access** to essential academic information such as:
+   This application is designed to provide students with **quick and easy access** to essential academic information such as:
 
-- 📚 Course Details  
-- 📝 Grades & Transcripts  
-- 📢 Announcements  
-- 🗓️ Academic Calendar *(planned)*
+-  Course Details  
+-  Grades & Transcripts  
+-  Announcements  
+-  Academic Calendar *(planned)*
 
 ---
 
-🔧 **Technologies Used:**
+ **Technologies Used:**
 - React Native (Expo)
 - TypeScript
 - [Your backend info if any...]
@@ -20,4 +20,4 @@ A **mobile adaptation** of the **SAÜPORTAL** system, developed under the guidan
 
 ---
 
-🧑‍🎓 _Empowering SAÜ students with academic access — anytime, anywhere._
+_Empowering SAÜ students with academic access — anytime, anywhere._
