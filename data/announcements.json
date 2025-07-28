@@ -1,0 +1,40 @@
+{
+    "announcements": [
+    {
+      "announcement_id": "bdba4c91-e7ae-403d-9378-e57edb5e0be3",
+      "course_id": "62d9bb2c-f3d7-4c36-bb71-9adce88c0383",
+      "explanation": "Final Sınav Takvimi Yayınlandı",
+      "explanation_detail": "12 Haziran, saat 13:00 - B105",
+      "publisher": "Prof. Dr. Ömer Gönülcü",
+      "date": "2025-06-01",
+      "type": "Özel"
+    },
+    {
+      "announcement_id": "c1b9498a-7856-4f55-86c5-4312af03f353",
+      "course_id": "c4ffb18d-3eac-46c7-b221-e3e8f313fc00",
+      "explanation": "Ödev Teslimi Uzatıldı",
+      "explanation_detail": "Teslim tarihi 10 Haziran oldu.",
+      "publisher": "Prof. Dr. Ömer Gönülcü",
+      "date": "2025-06-03",
+      "type": "Genel"
+    },
+    {
+      "announcement_id": "55bd5d73-5c10-4d57-82fb-47ddf657f4ee",
+      "course_id": "17bd2934-8a36-4632-ab8f-e7a69c4cb54e",
+      "explanation": "Ödev Teslimi Uzatıldı",
+      "explanation_detail": "Teslim tarihi 10 Haziran oldu.",
+      "publisher": "Prof. Dr. Ömer Gönülcü",
+      "date": "2025-07-07",
+      "type": "Genel"
+    },
+    {
+      "announcement_id": "fbfdc934-c936-410e-a295-c58c2f107bb6",
+      "course_id": "dc6495c7-3ed8-46e1-8736-70f6b40b5c95",
+      "explanation": "Ders İptali",
+      "explanation_detail": "25 Temmuz tarihindeki dersimiz iptal olmuştur.",
+      "publisher": "Prof. Dr. Berat Gönülcü",
+      "date": "2025-07-25",
+      "type": "Genel"
+    }
+  ]
+}

@@ -5,6 +5,8 @@ import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
+import { Slot } from 'expo-router';
+import { AuthProvider } from '../context/AuthContext';
 
 import { useColorScheme } from '@/components/useColorScheme';
 
@@ -48,12 +50,34 @@ export default function RootLayout() {
 function RootLayoutNav() {
   const colorScheme = useColorScheme();
 
+  const CustomTheme = {
+  ...DarkTheme, // DefaultTheme'den türetmek istersen
+  colors: {
+    ...DarkTheme.colors,
+    background: '#060c24ff',    
+    card: '#060c24ff',           
+    text: '#ffffff',             
+    border: '#222',              
+    notification: '#ff453a',     
+  },
+};
+
+
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-      </Stack>
-    </ThemeProvider>
+//     <AuthProvider>
+// <ThemeProvider value={CustomTheme}>
+//   <Stack>
+//     <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+//     <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+//   </Stack>
+//   <Slot />
+// </ThemeProvider>
+// </AuthProvider>
+
+    <AuthProvider>
+      <ThemeProvider value={CustomTheme}>
+        <Slot />
+      </ThemeProvider>
+    </AuthProvider>
   );
 }

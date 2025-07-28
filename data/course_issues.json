@@ -1,0 +1,11 @@
+{
+    "course_issues": [
+    {
+      "issue_id": "aadf3db9-5e6a-4a3f-9b98-2080fdc8d1b7",
+      "student_id": "8b7e2ad1-0451-4d19-a510-4037c38efc42",
+      "course_id": "62d9bb2c-f3d7-4c36-bb71-9adce88c0383",
+      "issue_description": "Hafta 2 PDF açılmıyor.",
+      "issue_date": "2025-06-05"
+    }
+  ]
+}

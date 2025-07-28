@@ -1,0 +1,39 @@
+{
+    "courses": [
+    {
+      "course_id": "62d9bb2c-f3d7-4c36-bb71-9adce88c0383",
+      "name": "Veritabanı Sistemleri",
+      "program": "Bilgisayar Mühendisliği",
+      "class_name": "3. Sınıf",
+      "credit": "4"
+    },
+    {
+      "course_id": "c4ffb18d-3eac-46c7-b221-e3e8f313fc00",
+      "name": "c++",
+      "program": "Bilgisayar Mühendisliği",
+      "class_name": "3. Sınıf",
+      "credit": "5"
+    },
+    {
+      "course_id": "17bd2934-8a36-4632-ab8f-e7a69c4cb54e",
+      "name": "matematik",
+      "program": "Bilişim Sistemleri Mühendisliği",
+      "class_name": "2. Sınıf",
+      "credit": "5"
+    },
+    {
+      "course_id": "dc6495c7-3ed8-46e1-8736-70f6b40b5c95",
+      "name": "sistem yöneticiliği",
+      "program": "Bilişim Sistemleri Mühendisliği",
+      "class_name": "4. Sınıf",
+      "credit": "5"
+    },
+    {
+      "course_id": "15b1cc9f-56d4-4056-8e64-1f8df76aa8f6",
+      "name": "veri madenciliği",
+      "program": "Bilişim Sistemleri Mühendisliği",
+      "class_name": "3. Sınıf",
+      "credit": "5"
+    }
+  ]
+}

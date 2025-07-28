@@ -1,0 +1,40 @@
+{
+    "student": [
+    {
+    "student_id": "7d0e2b21-3d8f-4a3e-b4ee-c1a0abf74121",
+    "name": "Mehmet",
+    "surname": "Demir",
+    "number": "12345678902",
+    "email": "mehmet.demir@ogr.sakarya.edu.tr",
+    "program": "Elektrik Elektronik Mühendisliği",
+    "password": "hashed_password_789"
+  },
+  {
+    "student_id": "8b7e2ad1-0451-4d19-a510-4037c38efc42",
+    "name": "ali",
+    "surname": "Yıldıran",
+    "number": "B221200385",
+    "email": "ali.veli@ogr.sakarya.edu.tr",
+    "program": "Bilgisayar Mühendisliği",
+    "password": "123"
+  },
+  {
+    "student_id": "5a1fdad7-cf01-4b1e-a8e1-4c3deae5cf11",
+    "name": "zeynep",
+    "surname": "Kaya",
+    "number": "12345678901",
+    "email": "zeynep.kaya@ogr.sakarya.edu.tr",
+    "program": "Yazılım Mühendisliği",
+    "password": "123"
+  },
+    {
+    "student_id": "861b5e91-4b72-46cf-bb15-b5feaab7406a",
+    "name": "ömer",
+    "surname": "Gönülcü",
+    "number": "B221200386",
+    "email": "omer.gonulcu@ogr.sakarya.edu.tr",
+    "program": "Bilişim Sistemleri Mühendisliği",
+    "password": "1234"
+  }
+]
+}

@@ -1,0 +1,92 @@
+{
+    "course_details": [
+    {
+      "course_detail_id": "a4a9cd63-cb23-42f2-9489-87ab7de709cd",
+      "course_id": "17bd2934-8a36-4632-ab8f-e7a69c4cb54e",
+      "course_detail": "sistem yöneticiliği temelleri",
+      "code": "VTS1",
+      "file_name": "Hafta1-SQL-Giris.pdf",
+      "file_type": "pdf",
+      "type": "kaynak",
+      "date_start": "2025-03-01",
+      "date_end": "2025-03-08"
+    },
+    {
+      "course_detail_id": "e0d7b748-89e2-4b7a-ae5b-4dcf6ffadbd7",
+      "course_id": "dc6495c7-3ed8-46e1-8736-70f6b40b5c95",
+      "course_detail": "sistem yöneticiliği temelleri",
+      "code": "VTS2",
+      "file_name": "sistem hafta 2.pptx",
+      "file_type": "pptx",
+      "type": "kaynak",
+      "date_start": "2025-03-09",
+      "date_end": "2025-03-16"
+    },
+    {
+      "course_detail_id": "9c81f56d-ddff-45dc-8d1c-f80ad9650de3",
+      "course_id": "dc6495c7-3ed8-46e1-8736-70f6b40b5c95",
+      "course_detail": "sistem yöneticiliği temelleri",
+      "code": "VTS2",
+      "file_name": "sistem hafta 1.pptx",
+      "file_type": "pptx",
+      "type": "kaynak",
+      "date_start": "2025-03-09",
+      "date_end": "2025-03-16"
+    },
+    {
+      "course_detail_id": "70dd3c0a-cf36-4b9a-8ff2-4906150b87dc",
+      "course_id": "62d9bb2c-f3d7-4c36-bb71-9adce88c0383",
+      "course_detail": "veritabanı dersi detay",
+      "code": "BSMT101",
+      "file_name": "Hafta1-SQL-Giris.pdf",
+      "file_type": "pptx",
+      "type": "kaynak",
+      "date_start": "2025-03-09",
+      "date_end": "2025-03-16"
+    },
+    {
+      "course_detail_id": "70dd3c0a-cf36-4b9a-8ff2-4906150b87dc",
+      "course_id": "c4ffb18d-3eac-46c7-b221-e3e8f313fc00",
+      "course_detail": "C++ dersi detay",
+      "code": "DBMS102",
+      "file_name": "Hafta1-Fonksiyonlar.pdf",
+      "file_type": "pptx",
+      "type": "kaynak",
+      "date_start": "2025-03-09",
+      "date_end": "2025-03-16"
+    },
+    {
+      "course_detail_id": "4ea9a8f4-b74f-4ad5-8fde-c5a44f88db4b",
+      "course_id": "15b1cc9f-56d4-4056-8e64-1f8df76aa8f6",
+      "course_detail": "veri madenciliği dersi detay",
+      "code": "VM101",
+      "file_name": "Hafta1-CNN.pdf",
+      "file_type": "pptx",
+      "type": "kaynak",
+      "date_start": "2025-03-09",
+      "date_end": "2025-03-16"
+    },
+    {
+      "course_detail_id": "4ea9a8f4-b74f-4ad5-8fde-c5a44f88db4b",
+      "course_id": "15b1cc9f-56d4-4056-8e64-1f8df76aa8f6",
+      "course_detail": "veri madenciliği dersi detay",
+      "code": "VM101",
+      "file_name": "Hafta2-CNN.pdf",
+      "file_type": "pptx",
+      "type": "kaynak",
+      "date_start": "2025-03-09",
+      "date_end": "2025-03-16"
+    },
+    {
+      "course_detail_id": "6fe0c897-1884-4558-87ee-2dfb312c5666",
+      "course_id": "15b1cc9f-56d4-4056-8e64-1f8df76aa8f6",
+      "course_detail": "veri madenciliği dersi detay",
+      "code": "VM101",
+      "file_name": "sanal-sınıf ders-1",
+      "file_type": "",
+      "type": "sanal-sinif",
+      "date_start": "2025-03-09",
+      "date_end": "2025-03-16"
+    }
+  ]
+}

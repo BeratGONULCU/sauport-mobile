@@ -1,0 +1,24 @@
+{
+    "notifications": [
+    {
+      "notification_id": "f68dc603-cd7c-4d0c-8887-b91a5a53b4a9",
+      "student_id": "8b7e2ad1-0451-4d19-a510-4037c38efc42",
+      "course_id": "62d9bb2c-f3d7-4c36-bb71-9adce88c0383",
+      "announcement_id": "bdba4c91-e7ae-403d-9378-e57edb5e0be3",
+      "title": "Final Tarihi Açıklandı",
+      "message": "Veritabanı finali 12 Haziran, kaçırma!",
+      "is_read": false,
+      "created_at": "2025-06-01T12:00:00Z"
+    },
+    {
+      "notification_id": "d11b1f86-2a27-4a4d-87a1-8f53f13f42f6",
+      "student_id": "8b7e2ad1-0451-4d19-a510-4037c38efc42",
+      "course_id": "62d9bb2c-f3d7-4c36-bb71-9adce88c0383",
+      "announcement_id": null,
+      "title": "Yeni İçerik Eklendi",
+      "message": "Hafta 4: SQL JOIN PDF yüklendi.",
+      "is_read": false,
+      "created_at": "2025-06-04T14:15:00Z"
+    }
+  ]
+}
