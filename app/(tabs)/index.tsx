@@ -28,7 +28,7 @@ export default function LoginPage() {
 
 const handleLogin = () => {
   const matched = students.student.find(
-    s => s.number === number.trim() && s.password === password.trim()
+    s => s.number.toUpperCase() === number.trim().toUpperCase() && s.password === password.trim()
   );
 
   if (matched) {
@@ -59,7 +59,7 @@ const handleLogin = () => {
 
       <TextInput
         style={styles.input}
-        placeholder="Kullanıcı Adı"
+        placeholder="Öğrenci No"
         value={number}
         onChangeText={setNumber}
         autoCapitalize="none"
