@@ -1,6 +1,6 @@
 import React, { createContext, useState, useContext, ReactNode } from 'react';
 
-// Kullanıcı ve kurs tiplerini tanımlayabilirsin
+// Kullanıcı ve kurs tipleri
 type Student = {
   student_id: string;
   name: string;
@@ -49,7 +49,7 @@ interface AuthContextType {
   setAnnouncements: React.Dispatch<React.SetStateAction<Announcements[]>>
 }
 
-// Context oluştur (başlangıçta null)
+// Context oluştur (default null)
 const AuthContext = createContext<AuthContextType | null>(null);
 
 // Provider bileşeni
@@ -69,7 +69,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
+    throw new Error('useAuth , AuthProvider içerisinde kullanılmalı');
   }
   return context;
 };

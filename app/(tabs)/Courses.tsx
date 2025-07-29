@@ -39,6 +39,8 @@ import { useAuth } from '../../context/AuthContext';
     - okul api'si alınabilir mi sor?
     - giriş yapan kullanıcı için ayarlamalar yapılmalı (jwt , token , auth , async fln)
     - derslere tıklanacak ve yeni sayfa açılacak (ders içeriği ve detayları)  (ÖNEMLi)
+    - her dersin altında o ders için kaç adet kaynak,sanal-sınıf,ödev,sınav olduğu yazacak.
+    - sidemenu açılma hatası düzelecek.
 
     önemli not: listelemeden önce güvenlik için ekstra bir şey yapmak gerekir mi? 
 */
@@ -247,7 +249,8 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     padding: 10,
     backgroundColor: '#fff',
-    borderRadius: 10,
+    borderRadius: 5,
+    gap:5,
     marginRight: 7,
     overflow: 'hidden',
   },
