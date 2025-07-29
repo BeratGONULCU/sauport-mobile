@@ -36,31 +36,6 @@ const handleLogin = () => {
 }
 
 return(
-    // <view style={styles.container}>
-
-    //     <view style={styles.buttonCenter}>
-    //     <TextInput
-    //     style={styles.input}
-    //     placeholder='Kullanıcı Adı buraya'
-    //     value={username}
-    //     onChangeText={setUsername}
-    //     ></TextInput>
-    //     </view>
-    //     <TextInput
-    //     style={styles.input}
-    //     placeholder='şifre buraya'
-    //     value={password}
-    //     onChangeText={setPassword}
-    //     />
-
-    //     <View style={styles.buttonCenter}>
-    //     <TouchableOpacity style={styles.button} onPress={handleLogin}>
-    //         <text style={styles.buttonText}> Giriş Yap </text>
-    //     </TouchableOpacity>
-    //     </View>
-
-    // </view>
-
     <View style={styles.container}>
     <Text style={styles.title}>SAÜPORT</Text>
 

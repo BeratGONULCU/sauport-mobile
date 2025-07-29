@@ -14,7 +14,7 @@ export interface Student {
 
 const path = '../data/student.json'; // → gerçek dosya yolu
 
-// ✅ Öğrenci ekleme
+// Öğrenci ekleme
 export const addStudent = async (newStudentData: Omit<Student, 'student_id'>): Promise<boolean> => {
   try {
     // Dosya içeriğini oku
@@ -31,10 +31,10 @@ export const addStudent = async (newStudentData: Omit<Student, 'student_id'>): P
     // Dosyaya yaz
     await FileSystem.writeAsStringAsync(path, JSON.stringify(students, null, 2));
 
-    console.log('✅ Öğrenci başarıyla eklendi:', newStudent);
+    console.log('Öğrenci başarıyla eklendi:', newStudent);
     return true;
   } catch (error) {
-    console.error('❌ Öğrenci eklenirken hata:', error);
+    console.error('Öğrenci eklenirken hata:', error);
     return false;
   }
 };
@@ -45,12 +45,12 @@ export const getStudents = async (): Promise<Student[]> => {
     const file = await FileSystem.readAsStringAsync(path).catch(() => '[]');
     return JSON.parse(file);
   } catch (error) {
-    console.error('❌ Öğrenciler okunamadı:', error);
+    console.error('Öğrenciler okunamadı:', error);
     return [];
   }
 };
 
-// 📁 Dosya yolunu logla (debug amaçlı)
+// Dosya yolunu logla (debug amaçlı)
 export const logFilePath = () => {
-  console.log('📂 Dosya konumu:', path);
+  console.log('Dosya konumu:', path);
 };

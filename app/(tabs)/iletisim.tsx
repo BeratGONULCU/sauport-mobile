@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   ScrollView,
   View,
@@ -7,18 +7,37 @@ import {
   Modal,
   TouchableOpacity,
 } from 'react-native';
+import dayjs from 'dayjs';
 import { useAuth } from '../../context/AuthContext';
 import announcements from '../../data/announcements.json';
 
+/*  
+    EKSİKLER;
+      - tüm duyurular tek bir div içerisinde toplanmalı
+      - duyurular başlığı yanına ders adı ile filtreleme
+      - eğer belirli bir sayıdan fazla duyuru varsa 2. sayfa olmalı 
+      - tarih abd tarzından türkiye tarzına dönmeli gün-ay-yıl 
+      - giriş - çıkış işlemi tamamlanmalı
+
+*/
+
 export default function IletisimPage() {
-  const { user, courses } = useAuth();
+  const { user, courses , announces } = useAuth();
 
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedAnnouncement, setSelectedAnnouncement] = useState<any>(null);
 
+  if (!user) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.titleFail}>Giriş yapılmamış</Text>
+      </View>
+    );
+  }
+
   return (
     <ScrollView style={styles.container}>
-      <Text style={styles.pageTitle}>Duyurular</Text>
+      <Text style={styles.pageTitle}>DUYURULAR</Text>
 
       {courses.map((course, i) => {
         const related = announcements.announcements.filter(
@@ -37,7 +56,7 @@ export default function IletisimPage() {
           >
             <View style={styles.row}>
               <Text style={styles.title}>{a.explanation}</Text>
-              <Text style={[styles.status, { color: '#4CAF50' }]}>✓ Okundu</Text>
+              {/* <Text style={[styles.status, { color: '#4CAF50' }]}>✓ Okundu</Text> */}
             </View>
 
             <Text style={styles.courseName}>{course.name}</Text>
@@ -97,15 +116,29 @@ export default function IletisimPage() {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 15,
-    backgroundColor: '#f4f6f8',
+    flex: 1,
+    backgroundColor: '#f3f3f3fa',
+    paddingHorizontal: 20,
+    paddingTop: 20,
+    width: '100%',
   },
   pageTitle: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
+    fontSize: 14,
     color: '#060c24ff',
+    marginBottom: 25,
+    textAlign: 'left',
+    marginLeft: 5,
+    borderBottomColor: '#20389a4a',
+    paddingBottom: 0,
+  },
+  titleFail: {
+    fontSize: 20,
+    color: '#060c24ff',
+    marginBottom: 25,
+    marginTop: 250,
     textAlign: 'center',
+    borderBottomColor: '#20389a4a',
+    paddingBottom: 0,
   },
   card: {
     backgroundColor: '#fff',
@@ -121,7 +154,6 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 16,
-    fontWeight: 'bold',
     flex: 1,
     marginRight: 10,
   },
@@ -176,13 +208,12 @@ const styles = StyleSheet.create({
   },
   modalTitle: {
     fontSize: 18,
-    fontWeight: 'bold',
     marginBottom: 10,
   },
   modalText: {
     fontSize: 16,
     marginBottom: 10,
-    color: '#333',
+    color: '#256cb2de',
   },
   modalCourse: {
     fontSize: 14,
