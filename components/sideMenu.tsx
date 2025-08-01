@@ -8,8 +8,9 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   Alert,
+  Image
 } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign, FontAwesome } from '@expo/vector-icons';
 import { useMenu } from '../context/MenuContext';
 import { useRouter } from 'expo-router';
 import { useAuth } from '../context/AuthContext';
@@ -98,6 +99,17 @@ const SideMenu = () => {
           { transform: [{ translateX: slideAnim }] },
         ]}
       >
+
+        {/* saulogo */}
+      <View style={styles.logoContainer}>
+        <Image
+          source={require('../assets/images/saulogo.png')} // yol senin proje yapına göre değişebilir
+          style={styles.logo}
+          resizeMode="contain"
+        />
+      </View>
+
+
         {/* Giriş */}
         <TouchableOpacity style={styles.link} onPress={ handlePress } activeOpacity={0.6}>
           <Text style={styles.menuItem}>Giriş Yap</Text>
@@ -142,7 +154,17 @@ const SideMenu = () => {
             </TouchableOpacity>
           </View>
         )}
+
+      {/* kapatmak için arrow tuşu */}
+      <View style={styles.closeButtonContainer}>
+        <TouchableOpacity onPress={toggleMenu} style={styles.closeButton}>
+          <AntDesign name="arrowright" size={24} color="#fff" />
+        </TouchableOpacity>
+      </View>
       </Animated.View>
+
+
+
     </View>
   );
 };
@@ -153,14 +175,14 @@ const styles = StyleSheet.create({
     left: 0,
     top: 0,
     width: Dimensions.get('window').width * 0.6,
-    height: '100%',
+    height: '90.5%',
     backgroundColor: '#060c24ff',
     paddingTop: 80,
     paddingHorizontal: 10,
     zIndex: 99,
   },
   menuItem: {
-    color: '#fff',
+    color: '#ffffffcc',
     marginVertical: 20,
     fontFamily: 'arial',
     fontSize: 15,
@@ -180,11 +202,23 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.3)',
     zIndex: 90,
   },
-  link: {},
+  link: {
+    marginLeft:-5
+  },
   buttonText: {
     color: '#fff',
     fontWeight: '600',
     fontSize: 16,
+  },
+  button: {
+    width: '50%',
+    backgroundColor: '#101e53ff',
+    padding: 15,
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf:'center', // yatayda ortalamak için
+    marginTop: 75,
   },
   menuRow: {
   flexDirection: 'row',
@@ -192,10 +226,33 @@ const styles = StyleSheet.create({
   justifyContent: 'space-between',
   marginVertical: 0,
   marginLeft: 0,
-  marginRight: 30,
+  marginRight: 40,
 },
 icon: {
   marginLeft: 10,
+},
+logoContainer: {
+  alignItems: 'flex-start',
+  paddingHorizontal: 20,
+  paddingTop: 0,
+  paddingBottom: 20,
+},
+logo: {
+  width: 120,
+  height: 40,
+},
+closeButtonContainer: {
+  position: 'absolute',
+  top: 75,
+  right: 16,
+  zIndex: 6,
+  padding: 1,
+  backgroundColor: 'rgba(64, 64, 64, 0.4)', 
+  borderRadius: 20,
+},
+
+closeButton: {
+  padding: 8,
 },
 });
 

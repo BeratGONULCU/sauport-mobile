@@ -17,14 +17,14 @@ import {showMessage} from 'react-native-flash-message';
   - kullanıcı adı girişinde (ali ) sonunda boşluklu yazarsa bunu hatalı kabul ediyor, düzeltilecek.
   - klayve kapama tuşu eklenmeli
   - giriş yapıldığında alert ile verilen mesaj yeşil tik işareti olsun ve 1.5 saniyede kapansın.
-
-   
+  - useState ile tanımladığımız number ve password değerlerini session ile giriş işlemini yaptığımızda , belirli bir süre kullanıcı adı bilgisini saklayabilir.
+     
 */
 
 export default function LoginPage() {
-  const [number, setNumber] = useState('');
-  const [password, setPassword] = useState('');
-  const { setUser } = useAuth(); // kullanıcı bilgisini setlemek için
+  const [number, setNumber] = useState("B221200385"); //bu silinecek sadece her defasında yazmamak için yazıldı.
+  const [password, setPassword] = useState("123"); //bu silinecek sadece her defasında yazmamak için yazıldı.
+  const { setUser } = useAuth(); // kullanıcı bilgisini setlemek ve useAuth ile saklamak için
 
 const handleLogin = () => {
   const matched = students.student.find(
@@ -55,7 +55,9 @@ const handleLogin = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>SAÜPORT</Text>
+      <Text style={styles.title}>SAUPORT</Text>
+
+      <Text style={styles.subTitle}>Öğrenme Yönetim Sistemi</Text>
 
       <TextInput
         style={styles.input}
@@ -94,9 +96,14 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 32,
-    marginBottom: 80,
+    marginBottom: 30,
     fontWeight: 'bold',
     color: '#172c79ff',
+  },
+  subTitle: {
+    fontSize: 16,
+    marginBottom: 40,
+    color: '#0d183fff',
   },
   input: {
     width: '80%',
