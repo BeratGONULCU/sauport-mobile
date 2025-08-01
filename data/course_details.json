@@ -8,8 +8,9 @@
       "file_name": "Hafta1-SQL-Giris.pdf",
       "file_type": "pdf",
       "type": "kaynak",
-      "date_start": "2025-03-01",
-      "date_end": "2025-03-08"
+      "url":  "",
+      "date_start": "01-03-2025",
+      "date_end": "-03-03-2025"
     },
     {
       "course_detail_id": "e0d7b748-89e2-4b7a-ae5b-4dcf6ffadbd7",
@@ -19,8 +20,9 @@
       "file_name": "sistem hafta 2.pptx",
       "file_type": "pptx",
       "type": "kaynak",
-      "date_start": "2025-03-09",
-      "date_end": "2025-03-16"
+      "url":  "",
+      "date_start": "09-03-2025",
+      "date_end": "09-03-2025"
     },
     {
       "course_detail_id": "9c81f56d-ddff-45dc-8d1c-f80ad9650de3",
@@ -30,52 +32,57 @@
       "file_name": "sistem hafta 1.pptx",
       "file_type": "pptx",
       "type": "kaynak",
-      "date_start": "2025-03-09",
-      "date_end": "2025-03-16"
+      "url":  "",
+      "date_start": "09-03-2025",
+      "date_end": "09-03-2025"
     },
     {
       "course_detail_id": "70dd3c0a-cf36-4b9a-8ff2-4906150b87dc",
       "course_id": "62d9bb2c-f3d7-4c36-bb71-9adce88c0383",
       "course_detail": "veritabanı dersi detay",
       "code": "BSMT101",
-      "file_name": "Hafta1-SQL-Giris.pdf",
+      "file_name": "Hafta1-SQL-Giris",
       "file_type": "pptx",
       "type": "kaynak",
-      "date_start": "2025-03-09",
-      "date_end": "2025-03-16"
+      "url":  "",
+      "date_start": "09-03-2025",
+      "date_end": "16-03-2025"
     },
     {
-      "course_detail_id": "70dd3c0a-cf36-4b9a-8ff2-4906150b87dc",
+      "course_detail_id": "ffba70d5-fcdb-40de-bc4e-cc68f3b39087",
       "course_id": "c4ffb18d-3eac-46c7-b221-e3e8f313fc00",
       "course_detail": "C++ dersi detay",
       "code": "DBMS102",
-      "file_name": "Hafta1-Fonksiyonlar.pdf",
+      "file_name": "Hafta1-Fonksiyonlar",
       "file_type": "pptx",
       "type": "kaynak",
-      "date_start": "2025-03-09",
-      "date_end": "2025-03-16"
+      "url":  "",
+      "date_start": "09-03-2025",
+      "date_end": "16-03-2025"
     },
     {
       "course_detail_id": "4ea9a8f4-b74f-4ad5-8fde-c5a44f88db4b",
       "course_id": "15b1cc9f-56d4-4056-8e64-1f8df76aa8f6",
       "course_detail": "veri madenciliği dersi detay",
       "code": "VM101",
-      "file_name": "Hafta1-CNN.pdf",
+      "file_name": "Hafta1-CNN",
       "file_type": "pptx",
       "type": "kaynak",
-      "date_start": "2025-03-09",
-      "date_end": "2025-03-16"
+      "url":  "",
+      "date_start": "09-03-2025",
+      "date_end": "16-03-2025"
     },
     {
-      "course_detail_id": "4ea9a8f4-b74f-4ad5-8fde-c5a44f88db4b",
+      "course_detail_id": "b33746f9-2fc2-46d2-90f7-fb8828167bbc",
       "course_id": "15b1cc9f-56d4-4056-8e64-1f8df76aa8f6",
       "course_detail": "veri madenciliği dersi detay",
       "code": "VM101",
-      "file_name": "Hafta2-CNN.pdf",
+      "file_name": "Hafta2-CNN",
       "file_type": "pptx",
       "type": "kaynak",
-      "date_start": "2025-03-09",
-      "date_end": "2025-03-16"
+      "url":  "",
+      "date_start": "09-03-2025",
+      "date_end": "16-03-2025"
     },
     {
       "course_detail_id": "6fe0c897-1884-4558-87ee-2dfb312c5666",
@@ -85,8 +92,104 @@
       "file_name": "sanal-sınıf ders-1",
       "file_type": "",
       "type": "sanal-sinif",
-      "date_start": "2025-03-09",
-      "date_end": "2025-03-16"
+      "url":  "",
+      "date_start": "09-03-2025",
+      "date_end": "16-03-2025"
+    },{
+      "course_detail_id": "ab12cd34-ef56-7890-abcd-1234567890ef",
+      "course_id": "62d9bb2c-f3d7-4c36-bb71-9adce88c0383",
+      "course_detail": "Veritabanı sınav duyurusu",
+      "code": "BSMT101",
+      "file_name": "",
+      "file_type": "",
+      "type": "sinav",
+      "url":  "",
+      "date_start": "10-04-2025",
+      "date_end": "10-07-2025"
+    },
+    {
+      "course_detail_id": "fa43be21-3a4d-4461-a21d-ff2039d2eabc",
+      "course_id": "dc6495c7-3ed8-46e1-8736-70f6b40b5c95",
+      "course_detail": "Sistem yöneticiliği 1. Vize sınavı",
+      "code": "VTS2",
+      "file_name": "vize-sinav-duyuru.pdf",
+      "file_type": "pdf",
+      "type": "sinav",
+      "url":  "",
+      "date_start": "15-04-2025",
+      "date_end": "15-04-2025"
+    },
+    {
+      "course_detail_id": "a123ffcc-7b0e-49f3-a1cd-44a8ec56fabc",
+      "course_id": "17bd2934-8a36-4632-ab8f-e7a69c4cb54e",
+      "course_detail": "SQL Uygulaması Ödevi",
+      "code": "VTS1",
+      "file_name": "odev1-sql.docx",
+      "file_type": "docx",
+      "type": "odev",
+      "url":  "",
+      "date_start": "15-07-2025",
+      "date_end": "28-07-2025"
+    },
+    {
+      "course_detail_id": "acbb9321-2bbf-4d3e-a1e4-cc558eeedabc",
+      "course_id": "c4ffb18d-3eac-46c7-b221-e3e8f313fc00",
+      "course_detail": "C++ Fonksiyon Ödevi",
+      "code": "DBMS102",
+      "file_name": "cpp-odev1",
+      "file_type": "pdf",
+      "type": "odev",
+      "url":  "",
+      "date_start": "20-03-2025",
+      "date_end": "27-03-2025"
+    },
+    {
+      "course_detail_id": "ddeeffcc-1100-2233-4455-66778899abcd",
+      "course_id": "15b1cc9f-56d4-4056-8e64-1f8df76aa8f6",
+      "course_detail": "veri madenciliği dersi detay",
+      "code": "VM101",
+      "file_name": "",
+      "file_type": "",
+      "type": "sanal-sinif",
+      "url":  "",
+      "date_start": "01-04-2025",
+      "date_end": "01-04-2025"
+    },
+    {
+      "course_detail_id": "bbccdd12-34ff-56aa-7788-99ff001122ab",
+      "course_id": "dc6495c7-3ed8-46e1-8736-70f6b40b5c95",
+      "course_detail": "Sistem Yöneticiliği Sanal Sınıf",
+      "code": "VTS2",
+      "file_name": "",
+      "file_type": "",
+      "type": "sanal-sinif",
+      "url":  "",
+      "date_start": "03-04-2025",
+      "date_end": "03-04-2025"
+    },
+    {
+      "course_detail_id": "9012abcd-4567-890a-bcde-12345678efgh",
+      "course_id": "62d9bb2c-f3d7-4c36-bb71-9adce88c0383",
+      "course_detail": "Veritabanı ek kaynak: ER Diyagramları",
+      "code": "BSMT101",
+      "file_name": "ek-kaynak-er.pdf",
+      "file_type": "pdf",
+      "type": "kaynak",
+      "url":  "",
+      "date_start": "05-042025",
+      "date_end": "10-04-2025"
+    },
+    {
+      "course_detail_id": "aaabbbcc-dddd-eeee-ffff-111122223333",
+      "course_id": "c4ffb18d-3eac-46c7-b221-e3e8f313fc00",
+      "course_detail": "C++ kaynak: nesne tabanlı programlama",
+      "code": "DBMS102",
+      "file_name": "oop-cpp",
+      "file_type": "pdf",
+      "url":  "",
+      "type": "kaynak",
+      "date_start": "11-04-2025",
+      "date_end": "18-04-2025"
     }
   ]
 }
