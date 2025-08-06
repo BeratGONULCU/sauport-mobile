@@ -12,9 +12,10 @@ type Student = {
 };
 
 type CourseDetail = {
-  course_id: string;
   course_detail_id: string;
-  name: ReactNode;
+  course_id: string;
+  academician_id: string;
+  name: ReactNode;        // bunun gibi kurs detay tablosunda olmayan veriler eklenebilir.
   program: ReactNode;
   course_detail:string;
   code: string;
@@ -38,7 +39,6 @@ type Announcements = {
   is_important:boolean;
 };
 
-
 // Context tipi
 interface AuthContextType {
   user: Student | null;
@@ -47,6 +47,9 @@ interface AuthContextType {
   setCourses: React.Dispatch<React.SetStateAction<CourseDetail[]>>;
   announces: Announcements[];
   setAnnouncements: React.Dispatch<React.SetStateAction<Announcements[]>>
+  selectedCourse: CourseDetail | null;
+  setSelectedCourse: React.Dispatch<React.SetStateAction<CourseDetail | null>>
+  logout: () => void;
 }
 
 // Context oluştur (default null)
@@ -57,9 +60,17 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<Student | null>(null);
   const [courses, setCourses] = useState<CourseDetail[]>([]);
   const [announces, setAnnouncements] = useState<Announcements[]>([]);
+  const [selectedCourse, setSelectedCourse] = useState<CourseDetail | null>(null);
+
+  const logout = () => {
+    setUser(null);
+    setCourses([]);
+    setAnnouncements([]);
+    setSelectedCourse(null);
+  };
 
   return (
-    <AuthContext.Provider value={{ user, setUser, courses, setCourses , announces , setAnnouncements }}>
+    <AuthContext.Provider value={{ user, setUser, courses, setCourses , announces , setAnnouncements , selectedCourse ,setSelectedCourse,logout }}>
       {children}
     </AuthContext.Provider>
   );

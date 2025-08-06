@@ -23,7 +23,8 @@ const SideMenu = () => {
   const [showContact, setShowContact] = useState(false);     // açılır menü: İletişim
 
   const router = useRouter();
-  const { user } = useAuth();
+  const { user,logout } = useAuth();
+
 
   useEffect(() => {
     if (isOpen) {
@@ -48,9 +49,17 @@ const SideMenu = () => {
 
   if (!isVisible) return null;
 
-  const handlePress = () => {
+  const handlePressLogin = () => {
     if (isOpen) toggleMenu();
     if (!user) router.push('/(tabs)');
+  };
+
+  const handlePressLogout = () => {
+    if (isOpen) toggleMenu();
+    if (user){
+      logout();
+      router.push('/');
+    }
   };
 
   const handlePressCourse = () => {
@@ -111,7 +120,7 @@ const SideMenu = () => {
 
 
         {/* Giriş */}
-        <TouchableOpacity style={styles.link} onPress={ handlePress } activeOpacity={0.6}>
+        <TouchableOpacity style={styles.link} onPress={ handlePressLogin } activeOpacity={0.6}>
           <Text style={styles.menuItem}>Giriş Yap</Text>
         </TouchableOpacity>
 
@@ -161,6 +170,12 @@ const SideMenu = () => {
           <AntDesign name="arrowright" size={24} color="#fff" />
         </TouchableOpacity>
       </View>
+
+        {/* Çıkış Yap */}
+        <TouchableOpacity style={styles.linkOut} onPress={ handlePressLogout } activeOpacity={0.6}>
+          <Text style={styles.menuItemOut}>Çıkış Yap</Text>
+        </TouchableOpacity>
+
       </Animated.View>
 
 
@@ -204,6 +219,20 @@ const styles = StyleSheet.create({
   },
   link: {
     marginLeft:-5
+  },
+  linkOut: {
+    marginLeft:30,
+    marginTop:300,
+    width:'65%',
+    backgroundColor:'#0f1b48ff',
+    borderRadius:15,
+  },
+  menuItemOut: {
+    color: '#ffffffcc',
+    marginVertical: 20,
+    fontFamily: 'arial',
+    fontSize: 15,
+    marginLeft: 35,
   },
   buttonText: {
     color: '#fff',

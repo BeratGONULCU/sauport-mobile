@@ -12,6 +12,8 @@ import {
 import * as Notifications from 'expo-notifications';
 import * as Device from 'expo-device';
 import constants from "expo-constants";
+import { FontAwesome, MaterialCommunityIcons, Entypo } from '@expo/vector-icons';
+
 
 import courseStudents from '../../data/student_courses.json';
 import course from '../../data/courses.json';
@@ -22,9 +24,36 @@ import { useAuth } from '../../context/AuthContext';
 import { router } from 'expo-router';
 import { ScrollView } from 'react-native';
 
+/*
+        TAMAMLANANLAR
+
+    - login ekranında json veriden kontrol yaparak giriş sağlanacak. --> **
+    - giriş yapan öğrencinin id ' si ile dersleri bu sayfada listelenecek. --> ** 
+    - listelenen derslerin detayları yazacak. --> **
+    - courses sayfasındaki yapıda telefonda her satırda bir , pc'de her satırda 2 ders olacak şekilde güncellenecek. **
+    - sidemenu içerisine buttonlar açılır yapılacak. **
+    - git repo açılacak. **
+    - addStudent sayfası ya kapatılacak ya da iletişim sayfasına dönüştürülecek. **
+    - derslere tıklanacak ve yeni sayfa açılacak (ders içeriği ve detayları)  (ÖNEMLi) **
+    - her dersin altında o ders için kaç adet kaynak,sanal-sınıf,ödev,sınav olduğu yazacak. **
+
+*/
+
+/*       BU SAYFADA YAPILACAKLAR
+
+    Bu sayfada ilgili öğrencinin dersleri listelenecek.
+    yapılacaklar;
+    - okul api'si alınabilir mi sor?
+    - giriş yapan kullanıcı için ayarlamalar yapılmalı (jwt , token , auth , async fln)
+    - sidemenu açılma hatası düzelecek. (bilgisayar için)
+
+    önemli not: listelemeden önce güvenlik için ekstra bir şey yapmak gerekir mi? 
+*/
+
 type CourseDetail = {
   course_detail_id: string;
   course_id: string;
+  academican_id:string;
   course_detail:string;
   code: string;
   file_name: string;
@@ -35,16 +64,6 @@ type CourseDetail = {
   date_end: string;
 };
 
-type Announce = {
-  announcement_id:string;
-  course_id:string;
-  explanation:string;
-  explanation_detail:string;
-  publisher:string;
-  date:string;
-  type:string;
-  is_important:boolean;
-};
 
     /* BU KISIM BİLDİRİM GÖNDERMEK İÇİN */
 
@@ -67,6 +86,8 @@ type Announce = {
 
 export default function CoursesPage() {
   const { user, setCourses } = useAuth();
+  const { setSelectedCourse } = useAuth();
+
   const { width } = useWindowDimensions();
   const numColumns = width >= 1024 ? 3 : width >= 768 ? 2 : 1;
   const groupedCourseDetails: Record<string, CourseDetail[]> = rawGroupedCourseDetails.grouped_courses;
@@ -101,7 +122,11 @@ export default function CoursesPage() {
         odevCount,
         sinavCount,
         sanalCount,
-        details
+        details,
+        course_detail_id:details[0].course_detail_id,
+        academician_id:details[0].academican_id,
+        file_name:details[0].file_name,
+        file_type:details[0].file_type,
       };
     });
   }, [user?.student_id]);
@@ -162,13 +187,22 @@ export default function CoursesPage() {
     )}
     contentContainerStyle={{ paddingBottom: 30 }} // alt boşluk
     renderItem={({ item }) => (
-      <TouchableOpacity onPress={() => router.push('/DersDetay')}>
+      <TouchableOpacity onPress={
+        () => {
+            console.log("Tıklanan ders:", item);
+        setSelectedCourse(item); // tıklanan kursun bilgileri useAuth ile kullanıcı üzerine yazılır.
+        router.push('/(tabs)/DersDetay')
+        }}
+        >
         <View style={styles.titleItem}>
           <Text style={styles.titleCode}>{item.code || '-'}</Text>
           <Text style={styles.courseTitle}>{item.name}</Text>
           <Text style={styles.courseTitlePr}>{item.program}</Text>
-          <Text style={styles.courseSubtitle}>
-            Kaynak: {item.kaynakCount} | Ödev: {item.odevCount} | Sınav: {item.sinavCount} | Sanal Sınıf: {item.sanalCount}
+          <Text style={styles.courseSubtitle}>{"   "} 
+            <FontAwesome name="book" size={14} color="#2563eb" /> {item.kaynakCount} {"      |        "}
+            <MaterialCommunityIcons name="puzzle-outline" size={14} color="#010101ff" /> {item.odevCount} {"        |        "}
+            <MaterialCommunityIcons name="pencil-outline" size={14} color="#f59e0b" /> {item.sinavCount} {"        |        "}
+            <FontAwesome name="video-camera" size={14} color="#10b981" /> {item.sanalCount}
           </Text>
         </View>
       </TouchableOpacity>
@@ -233,12 +267,11 @@ const styles = StyleSheet.create({
   },
   titleCode: {
     fontSize: 18,
-    fontWeight: 'bold',
-    color: '#00000fbf',
+    color: '#2f2f36bf',
     marginBottom: 5,
     borderBottomWidth: 1,
     borderBottomColor: '#20389a16',
-    paddingBottom: 16,
+    paddingBottom: 12,
   },
   titleItem: {
     flex: 1,
@@ -253,7 +286,7 @@ const styles = StyleSheet.create({
   courseTitle: {
     fontSize: 18,
     color: '#256bb2',
-    paddingTop: 8,
+    paddingTop: 4,
   },
   courseTitlePr: {
     fontSize: 14,
@@ -268,4 +301,21 @@ const styles = StyleSheet.create({
     color: '#05154f71',
     paddingTop: 8,
   },
+  button: {
+    width: '50%',
+    backgroundColor: '#101e53ff',
+    padding: 15,
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf:'center', // yatayda ortalamak için
+    marginTop: 75,
+  },
+  buttonText: {
+    color: '#fff',
+    fontWeight: '600',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: 16,
+  }
 });

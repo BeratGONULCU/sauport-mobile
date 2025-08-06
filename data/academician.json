@@ -1,0 +1,40 @@
+{
+    "academician": [
+    {
+    "academician_id": "30791ad4-7e00-4613-81c4-adb24a06ff57",
+    "name": "hoca1",
+    "surname": "soyad1",
+    "number": "A1",
+    "email": "hoca1@ogr.sakarya.edu.tr",
+    "program": "Elektrik Elektronik Mühendisliği",
+    "password": "123"
+  },
+  {
+    "academician_id": "20045fbd-d7c2-47c2-a186-ba95b46d2c72",
+    "name": "ömer berat",
+    "surname": "gönülcü",
+    "number": "A2",
+    "email": "omer@ogr.sakarya.edu.tr",
+    "program": "Bilgisayar Mühendisliği",
+    "password": "123"
+  },
+  {
+    "academician_id": "16a5de22-0d40-4267-9d16-ffadff64edf2",
+    "name": "hoca3",
+    "surname": "soyad3",
+    "number": "A3",
+    "email": "hoca3@ogr.sakarya.edu.tr",
+    "program": "Yazılım Mühendisliği",
+    "password": "123"
+  },
+    {
+    "academician_id": "729594a4-6b14-4ddd-97bc-b094b73163b7",
+    "name": "hoca4",
+    "surname": "soyad4",
+    "number": "A4",
+    "email": "hoca4@ogr.sakarya.edu.tr",
+    "program": "Bilişim Sistemleri Mühendisliği",
+    "password": "123"
+  }
+]
+}
