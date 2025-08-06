@@ -53,7 +53,7 @@ type Announce = {
 
 export default function CoursesPage() {
   const { user, setCourses , selectedCourse } = useAuth(); // seçilen ders için useAuth üzerinden bilgi selectedCourse ile fetch edilecek.
-  const [ activeTab , setActiveTab ] = useState('Ders İçeriği');
+  const { activeTab , setActiveTab } = useState('Ders İçeriği');
 
   //useAuth();  course set edilecek. gelince dizi halinde
   const { width } = useWindowDimensions();
@@ -135,63 +135,17 @@ return (
      */ 
     }
 
-    {/* Sekmeli Ders Kartı */}
-<View style={styles.card}>
-  {/* Sekmeler */}
-  <View style={styles.tabHeader}>
-    {['Ders İçeriği', 'Kaynak', 'Sanal Sınıf', 'Sınav', 'Ödev'].map(tab => (
-      <TouchableOpacity
-        key={tab}
-        style={[
-          styles.tabButton,
-          activeTab === tab && styles.activeTabButton
-        ]}
-        onPress={() => setActiveTab(tab)}
-      >
-        <Text
-          style={[
-            styles.tabText,
-            activeTab === tab && styles.activeTabText
-          ]}
-        >
-          {tab}
-        </Text>
-      </TouchableOpacity>
-    ))}
-  </View>
+    {/* Ders İçeriği */}
+    <View style={styles.card}>
+      <Text style={styles.title}>Ders İçeriği</Text>
 
-  {/* Sekme İçeriği */}
-  <View style={styles.tabContent}>
-    {activeTab === 'Ders İçeriği' && (
       <View style={styles.cardRow}>
         <Text style={styles.assignmentInfo}>Dosya Adı: {selectedCourse?.file_name}</Text>
         <Text style={styles.assignmentInfo}>Son Teslim: {selectedCourse?.date_start}</Text>
         <Text style={styles.assignmentInfo}>Açıklama: {selectedCourse?.date_end}</Text>
         <Text style={styles.assignmentInfo}>Hafta: {selectedCourse?.week}</Text>
       </View>
-    )}
-    {activeTab === 'Kaynak' && (
-      <View style={styles.cardRow}>
-        <Text style={styles.assignmentInfo}>Bu ders için kaynaklar yakında listelenecek.</Text>
-      </View>
-    )}
-    {activeTab === 'Sanal Sınıf' && (
-      <View style={styles.cardRow}>
-        <Text style={styles.assignmentInfo}>Henüz bilgi eklenmedi.</Text>
-      </View>
-    )}
-    {activeTab === 'Sınav' && (
-      <View style={styles.cardRow}>
-        <Text style={styles.assignmentInfo}>Henüz bilgi eklenmedi.</Text>
-      </View>
-    )}
-    {activeTab === 'Ödev' && (
-      <View style={styles.cardRow}>
-        <Text style={styles.assignmentInfo}>Henüz bilgi eklenmedi.</Text>
-      </View>
-    )}
-  </View>
-</View>
+    </View>
 
     {/* Ders Detayları */}
       <View style={styles.card}>
@@ -235,7 +189,7 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     borderBottomWidth: 1,
     borderBottomColor: '#20389a23',
-    paddingBottom: 10,
+    paddingBottom: 8,
   },
   titleFail: {
     fontSize: 20,
@@ -361,40 +315,4 @@ detailText: {
   color: '#374151',
   marginBottom: 5,
 },
-tabHeader: {
-  flexDirection: 'row',
-  flexWrap: 'wrap',          
-  justifyContent: 'flex-start',  
-  gap: 8,      
-  marginBottom: 10,
-  borderBottomWidth: 1,
-  borderColor: '#ddd',
-  paddingBottom:15,
-},
-tabButton: {
-  paddingVertical: 6,
-  paddingHorizontal: 12,
-  borderRadius: 12,
-  borderWidth: 1,
-  borderColor: '#256bb280',
-  margin: 2,
-  minWidth:75,
-  alignItems: 'center',
-  width:97,
-},
-activeTabButton: {
-  borderBottomWidth: 1,
-  borderColor: '#256bb2',
-},
-tabText: {
-  fontSize: 13,
-  color: '#374151d5',
-},
-activeTabText: {
-  color: '#256bb2',
-},
-tabContent: {
-  marginTop: 10,
-},
-
 });

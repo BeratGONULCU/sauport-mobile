@@ -22,6 +22,7 @@ type CourseDetail = {
   file_name: string;
   file_type: string;
   url: string;
+  week:string;
   type:string;
   date_start: string;
   date_end: string;

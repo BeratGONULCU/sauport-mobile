@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo } from 'react';
 import {
   StyleSheet,
+  Pressable,
   Text,
   View,
   FlatList,
@@ -60,29 +61,10 @@ type CourseDetail = {
   file_type: string;
   type: string;
   url:string;
+  week:string;
   date_start: string;
   date_end: string;
 };
-
-
-    /* BU KISIM BİLDİRİM GÖNDERMEK İÇİN */
-
-// async function sendPushNotification(expoPushToken: string, message: string) {
-//   await fetch('https://exp.host/--/api/v2/push/send', {
-//     method: 'POST',
-//     headers: {
-//       Accept: 'application/json',
-//       'Accept-encoding': 'gzip, deflate',
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify({
-//       to: expoPushToken,
-//       sound: 'default',
-//       title: 'Yeni Duyuru',
-//       body: message,
-//     }),
-//   });
-// }
 
 export default function CoursesPage() {
   const { user, setCourses } = useAuth();
@@ -127,6 +109,9 @@ export default function CoursesPage() {
         academician_id:details[0].academican_id,
         file_name:details[0].file_name,
         file_type:details[0].file_type,
+        week:details[0].week,
+        date_start:details[0].date_start,
+        date_end:details[0].date_end,
       };
     });
   }, [user?.student_id]);
@@ -142,38 +127,15 @@ export default function CoursesPage() {
     return (
       <View style={styles.container}>
         <Text style={styles.titleFail}>Giriş yapılmamış</Text>
+
+      <TouchableOpacity style={styles.button} onPress={() => router.push('/')}>
+          <Text style={styles.buttonText}>Giriş Yapmak İçin</Text>
+          <FontAwesome name="arrow-right" size={16} color="#fff" />
+      </TouchableOpacity>
+
       </View>
     );
   }
-
-    /* BU KISIM BİLDİRİM GÖNDERMEK İÇİN */
-
-  // useEffect(() => {
-  //   if (user) {
-  //     registerForPushNotificationsAsync().then(token => {
-  //       if (token) {
-  //         console.log('Expo Push Token:', token);
-  //       }
-  //     });
-  //   }
-  // }, [user]);
-
-
-      /* BU KISIM BİLDİRİM GÖNDERMEK İÇİN */
-
-  // useEffect(() => {
-  //   registerForPushNotificationsAsync().then(token => {
-  //     if (token) {
-  //       const important = Announcements.announcements.find(
-  //         d => d.is_important === true
-  //       );
-
-  //       if (important) {
-  //         sendPushNotification(token, important.explanation);
-  //       }
-  //     }
-  //   });
-  // }, []);
 
   return (
 <View style={styles.container}>
@@ -187,57 +149,52 @@ export default function CoursesPage() {
     )}
     contentContainerStyle={{ paddingBottom: 30 }} // alt boşluk
     renderItem={({ item }) => (
-      <TouchableOpacity onPress={
-        () => {
-            console.log("Tıklanan ders:", item);
-        setSelectedCourse(item); // tıklanan kursun bilgileri useAuth ile kullanıcı üzerine yazılır.
-        router.push('/(tabs)/DersDetay')
-        }}
-        >
-        <View style={styles.titleItem}>
-          <Text style={styles.titleCode}>{item.code || '-'}</Text>
-          <Text style={styles.courseTitle}>{item.name}</Text>
-          <Text style={styles.courseTitlePr}>{item.program}</Text>
-          <Text style={styles.courseSubtitle}>{"   "} 
-            <FontAwesome name="book" size={14} color="#2563eb" /> {item.kaynakCount} {"      |        "}
-            <MaterialCommunityIcons name="puzzle-outline" size={14} color="#010101ff" /> {item.odevCount} {"        |        "}
-            <MaterialCommunityIcons name="pencil-outline" size={14} color="#f59e0b" /> {item.sinavCount} {"        |        "}
-            <FontAwesome name="video-camera" size={14} color="#10b981" /> {item.sanalCount}
-          </Text>
-        </View>
-      </TouchableOpacity>
+      // <TouchableOpacity onPress={
+      //   () => {
+      //       console.log("Tıklanan ders:", item);
+      //   setSelectedCourse(item); // tıklanan kursun bilgileri useAuth ile kullanıcı üzerine yazılır.
+      //   router.push('/(tabs)/DersDetay')
+      //   }}
+      // >
+<View style={styles.titleItem}>
+
+  <Text
+    style={styles.titleCode}
+    onPress={() => {
+      setSelectedCourse(item);
+      router.push('/(tabs)/DersDetay');
+    }}
+  >
+    {item.code || '-'}
+  </Text>
+
+  <Text
+    style={styles.courseTitle}
+    onPress={() => {
+      setSelectedCourse(item);
+      router.push('/(tabs)/DersDetay');
+    }}
+  >
+    {item.name}
+  </Text>
+
+  <Text style={styles.courseTitlePr}>{item.program}</Text>
+
+  <Text style={styles.courseSubtitle}>{"   "} 
+    <FontAwesome name="book" size={14} color="#2563eb" /> {item.kaynakCount} {"      |        "}
+    <MaterialCommunityIcons name="puzzle-outline" size={14} color="#010101ff" /> {item.odevCount} {"        |        "}
+    <MaterialCommunityIcons name="pencil-outline" size={14} color="#f59e0b" /> {item.sinavCount} {"        |        "}
+    <FontAwesome name="video-camera" size={14} color="#10b981" /> {item.sanalCount}
+  </Text>
+</View>
+
+      
     )}
   />
 </View>
 
   );
 }
-
-
-/* BİLDİRİM DURUMU KONTROL MESAJI */
-// async function registerForPushNotificationsAsync() {
-//   if (Device.isDevice) {
-//     const { status: existingStatus } = await Notifications.getPermissionsAsync();
-//     let finalStatus = existingStatus;
-
-//     if (existingStatus !== 'granted') {
-//       const { status } = await Notifications.requestPermissionsAsync();
-//       finalStatus = status;
-//     }
-
-//     if (finalStatus !== 'granted') {
-//       alert('Bildirim izni verilmedi.');
-//       return null;
-//     }
-
-//     const tokenData = await Notifications.getExpoPushTokenAsync();
-//     console.log("token:",tokenData.data);
-//     return tokenData.data;
-//   } else {
-//     alert('Gerçek cihazda test etmelisin.');
-//     return null;
-//   }
-// }
 
 const styles = StyleSheet.create({
   container: {
@@ -272,6 +229,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#20389a16',
     paddingBottom: 12,
+    // width:'20%',
   },
   titleItem: {
     flex: 1,

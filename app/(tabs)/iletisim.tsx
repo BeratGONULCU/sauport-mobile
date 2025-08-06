@@ -10,6 +10,8 @@ import {
 import dayjs from 'dayjs';
 import { useAuth } from '../../context/AuthContext';
 import announcements from '../../data/announcements.json';
+import { router } from 'expo-router';
+import { FontAwesome } from '@expo/vector-icons';
 
 /*  
     EKSİKLER;
@@ -31,6 +33,12 @@ export default function IletisimPage() {
     return (
       <View style={styles.container}>
         <Text style={styles.titleFail}>Giriş yapılmamış</Text>
+
+      <TouchableOpacity style={styles.button} onPress={() => router.push('/')}>
+          <Text style={styles.buttonText}>Giriş Yapmak İçin</Text>
+          <FontAwesome name="arrow-right" size={16} color="#fff" />
+      </TouchableOpacity>
+
       </View>
     );
   }
@@ -235,4 +243,21 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
   },
+  button: {
+    width: '50%',
+    backgroundColor: '#101e53ff',
+    padding: 15,
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf:'center', // yatayda ortalamak için
+    marginTop: 75,
+  },
+  buttonText: {
+    color: '#fff',
+    fontWeight: '600',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: 16,
+  }
 });

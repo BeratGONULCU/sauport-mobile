@@ -54,13 +54,17 @@ const SideMenu = () => {
     if (!user) router.push('/(tabs)');
   };
 
-  const handlePressLogout = () => {
-    if (isOpen) toggleMenu();
-    if (user){
-      logout();
-      router.push('/');
-    }
-  };
+const handlePressLogout = () => {
+  if (isOpen) toggleMenu();
+
+  if (user) {
+    logout();
+
+    setTimeout(() => {
+      router.push('/(tabs)');
+    }, 50);
+  }
+};
 
   const handlePressCourse = () => {
     setShowEducation(!showEducation); // aç/kapa

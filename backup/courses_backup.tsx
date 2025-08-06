@@ -72,6 +72,8 @@ type Announce = {
   is_important:boolean;
 };
 
+    /* BU KISIM BİLDİRİM GÖNDERMEK İÇİN */
+
 // Bildirim gönderme fonksiyonu
 async function sendPushNotification(expoPushToken: string, message: string) {
   await fetch('https://exp.host/--/api/v2/push/send', {
@@ -134,6 +136,9 @@ export default function CoursesPage() {
     });
   }, [user.student_id]);
 
+
+      /* BU KISIM BİLDİRİM GÖNDERMEK İÇİN  ikisi de*/
+
   // 🔄 Dersleri Auth'a at
   useEffect(() => {
     setCourses(mergedCourseList);
@@ -191,6 +196,8 @@ export default function CoursesPage() {
     </ScrollView>
   );
 }
+
+/* BİLDİRİM DURUMU KONTROL MESAJI */
 
 //Bildirim izin/token fonksiyonu
 async function registerForPushNotificationsAsync() {
