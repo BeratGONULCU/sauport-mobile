@@ -15,13 +15,13 @@ import * as Notifications from "expo-notifications";
 import * as Device from "expo-device";
 import constants from "expo-constants";
 
-import courseStudents from "../../data/student_courses.json";
-import course from "../../data/courses.json";
-import groupedCourses from "../../data/grouped_courses.json";
-import Announcements from "../../data/announcements.json";
-import academicians from "../../data/academician.json";
+import courseStudents from "../data/student_courses.json";
+import course from "../data/courses.json";
+import groupedCourses from "../data/grouped_courses.json";
+import Announcements from "../data/announcements.json";
+import academicians from "../data/academician.json";
 
-import { useAuth } from "../../context/AuthContext";
+import { useAuth } from "../context/AuthContext";
 import { router } from "expo-router";
 import { FontAwesome } from "@expo/vector-icons";
 import { Item } from "react-native-paper/lib/typescript/components/Drawer/Drawer";
@@ -54,7 +54,7 @@ type Announce = {
 
 export default function CoursesPage() {
   const { user, setCourses, selectedCourse } = useAuth(); // seçilen ders için useAuth üzerinden bilgi selectedCourse ile fetch edilecek.
-  const [activeTab, setActiveTab] = useState("Hepsi");
+  const [activeTab, setActiveTab] = useState("Aktiviteler");
   const [expandedID, setExpandedID] = useState<number | null>(null);
 
   //useAuth();  course set edilecek. gelince dizi halinde
@@ -133,10 +133,10 @@ export default function CoursesPage() {
         <View style={styles.container}>
           <View style={styles.card}>
             <Text style={styles.detailLabel}>
-              Ders Adı: <Text style={styles.detailText}>{selectedCourse?.name}</Text>
+              Ders Adı: {selectedCourse?.name}
             </Text>
-            <Text style={styles.detailLabel}>
-              Program: <Text style={styles.detailText}>{selectedCourse?.program}</Text>
+            <Text style={styles.detailText}>
+              Program: {selectedCourse?.program}
             </Text>
           </View>
 
@@ -152,7 +152,7 @@ export default function CoursesPage() {
 
             {/* Sekmeler */}
             <View style={styles.tabHeader}>
-              {["Hepsi", "Kaynak", "Sanal Sınıf", "Sınav", "Ödev"].map(
+              {["Aktiviteler", "Kaynak", "Sanal Sınıf", "Sınav", "Ödev"].map(
                 (tab) => (
                   <TouchableOpacity
                     key={tab}
@@ -177,199 +177,87 @@ export default function CoursesPage() {
 
             {/* Sekme İçeriği */}
             <View style={styles.tabContent}>
-              {activeTab === "Hepsi" && (
+              {activeTab === "Aktiviteler" && (
                 <View style={styles.cardRow}>
-                  <List.Section style={{ backgroundColor: "#000" }}>
-                    <List.Accordion
-                      title="Hafta 1"
-                      titleStyle={{ color: "#333" }}
-                      style={{
-                        backgroundColor: "#f0f0f0",
-                        marginBottom: 0.3,
-                        shadowColor: "#fff",
-                        borderRadius: 5,
-                      }} // dış kutu
-                      theme={{ colors: { background: "#f0f0f0" } }}
-                      left={(props) => <List.Icon {...props} icon="folder" />}
-                      expanded={expandedID === 1}
-                      onPress={() => handlePress(1)}
-                    >
-                      <List.Item
-                        title="Ders Detayı"
-                        titleStyle={{
-                          color: "gray",
-                          fontSize: 18,
-                          marginLeft: -10,
-                        }}
-                        style={{
-                          backgroundColor: "#fff",
-                          paddingVertical: 6,
-                        }}
-                        description={() => (
-                          <View>
-                            <Text style={styles.assignmentInfo}>
-                              Dosya Adı: {selectedCourse?.file_name}
-                            </Text>
-                            <Text style={styles.assignmentInfo}>
-                              Son Teslim: {selectedCourse?.date_start}
-                            </Text>
-                            <Text style={styles.assignmentInfo}>
-                              Açıklama: {selectedCourse?.date_end}
-                            </Text>
-                            <Text style={styles.assignmentInfo}>
-                              Hafta: {selectedCourse?.week}
-                            </Text>
-                          </View>
-                        )}
-                      />
-                    </List.Accordion>
-
-                    <List.Accordion
-                      title="Hafta 2"
-                      titleStyle={{ color: "#333" }}
-                      style={{ backgroundColor: "#f0f0f0", marginBottom: 0.3 }} // dış kutu
-                      theme={{ colors: { background: "#f0f0f0" } }}
-                      left={(props) => <List.Icon {...props} icon="folder" />}
-                      expanded={expandedID === 2}
-                      onPress={() => handlePress(2)}
-                    >
-                      <List.Item
-                        title="Ders Detayı"
-                        titleStyle={{
-                          color: "gray",
-                          fontSize: 18,
-                          marginLeft: -10,
-                        }}
-                        style={{
-                          backgroundColor: "#fff",
-                          paddingVertical: 6,
-                        }}
-                        description={() => (
-                          <View>
-                            <Text style={styles.assignmentInfo}>
-                              Dosya Adı: {selectedCourse?.file_name}
-                            </Text>
-                            <Text style={styles.assignmentInfo}>
-                              Son Teslim: {selectedCourse?.date_start}
-                            </Text>
-                            <Text style={styles.assignmentInfo}>
-                              Açıklama: {selectedCourse?.date_end}
-                            </Text>
-                            <Text style={styles.assignmentInfo}>
-                              Hafta: {selectedCourse?.week}
-                            </Text>
-                          </View>
-                        )}
-                      />
-                    </List.Accordion>
-
-                    <List.Accordion
-                      title="Hafta 3"
-                      titleStyle={{ color: "#333" }}
-                      style={{ backgroundColor: "#f0f0f0", marginBottom: 0.3 }} // dış kutu
-                      theme={{ colors: { background: "#f0f0f0" } }}
-                      left={(props) => <List.Icon {...props} icon="folder" />}
-                      expanded={expandedID === 3}
-                      onPress={() => handlePress(3)}
-                    >
-                      <List.Item
-                        title="Ders Detayı"
-                        titleStyle={{
-                          color: "gray",
-                          fontSize: 18,
-                          marginLeft: -10,
-                        }}
-                        style={{
-                          backgroundColor: "#fff",
-                          paddingVertical: 6,
-                        }}
-                        description={() => (
-                          <View>
-                            <Text style={styles.assignmentInfo}>
-                              Hafta:  {selectedCourse?.week}
-                            </Text>
-
-                          </View>
-                        )}
-                      />
-                    </List.Accordion>
-                  </List.Section>
+                  <Text style={styles.assignmentInfo}>
+                    Dosya Adı: {selectedCourse?.file_name}
+                  </Text>
+                  <Text style={styles.assignmentInfo}>
+                    Son Teslim: {selectedCourse?.date_start}
+                  </Text>
+                  <Text style={styles.assignmentInfo}>
+                    Açıklama: {selectedCourse?.date_end}
+                  </Text>
+                  <Text style={styles.assignmentInfo}>
+                    Hafta: {selectedCourse?.week}
+                  </Text>
                 </View>
               )}
               {activeTab === "Kaynak" && (
                 <View style={styles.cardRow}>
-                  <List.Section style={{ backgroundColor: "#000" }}>
+                  <List.Section style={{backgroundColor: '#000'}} >
                     <List.Accordion
                       title="Hafta 1"
-                      titleStyle={{ color: "#333" }}
-                      style={{
-                        backgroundColor: "#f0f0f0",
-                        marginBottom: 0.3,
-                        shadowColor: "#fff",
-                        borderRadius: 5,
-                      }} // dış kutu
-                      theme={{ colors: { background: "#f0f0f0" } }}
+                      titleStyle={{ color: '#333' }} 
+                      style={{ backgroundColor: '#f0f0f0', marginBottom: 0.3, shadowColor:'#fff',borderRadius:5 }} // dış kutu
+                      theme={{ colors: { background: '#f0f0f0' } }}
                       left={(props) => <List.Icon {...props} icon="folder" />}
                       expanded={expandedID === 1}
                       onPress={() => handlePress(1)}
                     >
-                      <List.Item
-                        title="First item"
-                        titleStyle={{ color: "gray", fontSize: 14 }}
-                        style={{ backgroundColor: "#fff", paddingVertical: 6 }}
+                      <List.Item 
+                        title="First item" 
+                        titleStyle={{ color: 'gray', fontSize: 14 }}
+                        style={{ backgroundColor: '#fff', paddingVertical: 6 }}
                       />
-                      <List.Item
-                        title="Second item"
-                        titleStyle={{ color: "gray", fontSize: 14 }}
-                        style={{ backgroundColor: "#fff", paddingVertical: 6 }}
+                      <List.Item 
+                        title="Second item" 
+                        titleStyle={{ color: 'gray', fontSize: 14 }}
+                        style={{ backgroundColor: '#fff', paddingVertical: 6 }}
                       />
                     </List.Accordion>
 
                     <List.Accordion
                       title="Hafta 2"
-                      titleStyle={{ color: "#333" }}
-                      style={{ backgroundColor: "#f0f0f0", marginBottom: 0.3 }} // dış kutu
-                      theme={{ colors: { background: "#f0f0f0" } }}
+                      titleStyle={{ color: '#333' }} 
+                      style={{ backgroundColor: '#f0f0f0', marginBottom: 0.3 }} // dış kutu
+                      theme={{ colors: { background: '#f0f0f0' } }}
                       left={(props) => <List.Icon {...props} icon="folder" />}
                       expanded={expandedID === 2}
                       onPress={() => handlePress(2)}
                     >
-                      <List.Item
-                        title="First item"
-                        titleStyle={{ color: "gray", fontSize: 14 }}
-                        style={{ backgroundColor: "#fff", paddingVertical: 6 }}
+                      <List.Item 
+                        title="First item" 
+                        titleStyle={{ color: 'gray', fontSize: 14 }}
+                        style={{ backgroundColor: '#fff', paddingVertical: 6 }} 
                       />
-                      <List.Item
-                        title="Second item"
-                        titleStyle={{ color: "gray", fontSize: 14 }}
-                        style={{ backgroundColor: "#fff", paddingVertical: 6 }}
-                      />
+                      <List.Item 
+                        title="Second item" 
+                        titleStyle={{ color: 'gray', fontSize: 14 }}
+                        style={{ backgroundColor: '#fff', paddingVertical: 6 }} 
+                      />                    
                     </List.Accordion>
 
-                    {/* <List.Accordion
+                    <List.Accordion
                       title="Hafta 3"
-                      titleStyle={{ color: "#333" }}
-                      style={{ backgroundColor: "#f0f0f0", marginBottom: 0.3 }} // dış kutu
-                      theme={{ colors: { background: "#f0f0f0" } }}
+                      titleStyle={{ color: '#333' }} 
+                      style={{ backgroundColor: '#f0f0f0', marginBottom: 0.3 }} // dış kutu
+                      theme={{ colors: { background: '#f0f0f0' } }}
                       left={(props) => <List.Icon {...props} icon="folder" />}
                       expanded={expandedID === 3}
                       onPress={() => handlePress(3)}
                     >
-                      <List.Item
-                        title="First item"
-                        titleStyle={{
-                          color: "gray",
-                          fontSize: 14,
-                          marginLeft: -40,
-                        }}
-                        style={{ backgroundColor: "#fff", paddingVertical: 6 }}
+                      <List.Item 
+                        title="First item" 
+                        titleStyle={{ color: 'gray', fontSize: 14, marginLeft: -40 }}
+                        style={{ backgroundColor: '#fff', paddingVertical: 6 }} 
                       />
-                      <List.Item
-                        title="First item"
-                        titleStyle={{ color: "gray", fontSize: 14 }}
-                        style={{ backgroundColor: "#fff", paddingVertical: 6 }}
-                      />
-                    </List.Accordion> */}
+                      <List.Item 
+                        title="First item" 
+                        titleStyle={{ color: 'gray', fontSize: 14 }}
+                        style={{ backgroundColor: '#fff', paddingVertical: 6 }} 
+                      />                    
+                    </List.Accordion>
                   </List.Section>
                 </View>
               )}
@@ -427,7 +315,7 @@ export default function CoursesPage() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f1f2f8",
+    backgroundColor: "#f3f3f3fa",
     paddingHorizontal: 20,
     paddingTop: 20,
     width: "100%",
@@ -537,18 +425,14 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   assignmentStatus: {
-    fontSize: 15,
-    color: "#374151d5",
+    fontSize: 12,
+    color: "#26b089ff",
     marginBottom: 10,
-    backgroundColor: "#ffffffff",
+    backgroundColor: "#d3f4ee",
     paddingHorizontal: 8,
     paddingVertical: 3,
     alignSelf: "flex-start",
-    borderRadius: 3,
-    borderWidth: 1,
-    borderColor: '#c4c4c4a2',
-    padding: 10,
-    marginTop:5
+    borderRadius: 5,
   },
   assignmentInfo: {
     fontSize: 13,

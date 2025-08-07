@@ -82,8 +82,7 @@ export default function IletisimPage() {
               >
                 <Text style={styles.badgeText}>{a.type}</Text>
               </View>
-              <Text style={styles.publisher}>👤 {a.publisher || 'Sistem'}</Text>
-              <Text style={styles.view}>👁️</Text>
+              <Text style={styles.publisher}>            {a.publisher || 'Sistem'}</Text>
             </View>
           </TouchableOpacity>
         ));
