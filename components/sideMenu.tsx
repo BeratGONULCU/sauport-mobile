@@ -116,7 +116,7 @@ const handlePressLogout = () => {
         {/* saulogo */}
       <View style={styles.logoContainer}>
         <Image
-          source={require('../assets/images/saulogo.png')} // yol senin proje yapına göre değişebilir
+          source={require('../assets/images/saulogo_tr.png')} // yol senin proje yapına göre değişebilir
           style={styles.logo}
           resizeMode="contain"
         />
@@ -143,7 +143,7 @@ const handlePressLogout = () => {
         {showEducation && (
           <View style={styles.subMenu}>
             <TouchableOpacity onPress={ routerCourse }>
-              <Text style={styles.subMenuItem}>Derslerim</Text>
+              <Text style={styles.subMenuItem}>Ders</Text>
             </TouchableOpacity>
           </View>
         )}

@@ -14,7 +14,7 @@
         "url": "",
         "week":"1",
         "date_start": "01-03-2025",
-        "date_end": "-03-03-2025"
+        "date_end": "03-03-2025"
       },
       {
         "course_detail_id": "a123ffcc-7b0e-49f3-a1cd-44a8ec56fabc",
@@ -26,7 +26,7 @@
         "file_type": "docx",
         "type": "odev",
         "url": "",
-        "week":"2",
+        "week":"",
         "date_start": "15-07-2025",
         "date_end": "28-07-2025"
       }
@@ -38,7 +38,7 @@
         "academican_id":"20045fbd-d7c2-47c2-a186-ba95b46d2c72",
         "course_detail": "sistem yöneticiliği temelleri",
         "code": "VTS2",
-        "file_name": "sistem hafta 2.pptx",
+        "file_name": "sistem hafta 1.pptx",
         "file_type": "pptx",
         "type": "kaynak",
         "url": "",
@@ -70,7 +70,7 @@
         "file_type": "docx",
         "type": "odev",
         "url": "",
-        "week":"3",
+        "week":"",
         "date_start": "15-07-2025",
         "date_end": "28-07-2025"
       },
@@ -114,7 +114,7 @@
         "file_type": "",
         "type": "sinav",
         "url": "",
-        "week":"2",
+        "week":"",
         "date_start": "10-04-2025",
         "date_end": "10-07-2025"
       },
@@ -158,7 +158,7 @@
         "file_type": "pdf",
         "type": "odev",
         "url": "",
-        "week":"2",
+        "week":"",
         "date_start": "10-04-2025",
         "date_end": "10-07-2025"
       },

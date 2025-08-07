@@ -36,7 +36,7 @@ const handleLogin = () => {
     showMessage({
       message: "Giriş başarılı!",
       type: "success",
-      duration: 1200,
+      duration: 2000,
       icon: "success",
     });
 
