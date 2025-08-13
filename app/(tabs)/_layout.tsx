@@ -117,6 +117,15 @@ function TabLayoutContent() {
             tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
           }}
         />
+
+          <Tabs.Screen
+          name="kaynakDetay"
+          options={{
+            href: null,  // navbarda gizli olması için
+            title: "",
+            tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
+          }}
+        />
       </Tabs>
     </>
   );

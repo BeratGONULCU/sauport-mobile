@@ -30,13 +30,15 @@ type CourseDetail = {
   course_detail_id: string;
   course_id: string;
   academician_id: string;
-  course_detail: string;
+  name: string;        // bunun gibi kurs detay tablosunda olmayan veriler eklenebilir.
+  program: string;
+  course_detail:string;
   code: string;
   file_name: string;
   file_type: string;
-  type: string;
   url: string;
-  week: string;
+  week:string;
+  type:string;
   date_start: string;
   date_end: string;
 };
@@ -52,10 +54,31 @@ type Announce = {
   is_important: boolean;
 };
 
+type groupedCourses = {
+  grouped_courses: Record<string, CourseDetail[]>;
+};
+
 export default function CoursesPage() {
-  const { user, setCourses, selectedCourse } = useAuth(); // seçilen ders için useAuth üzerinden bilgi selectedCourse ile fetch edilecek.
+  const { user, setCourses, selectedCourse , setSelectedDetail } = useAuth(); // seçilen ders için useAuth üzerinden bilgi selectedCourse ile fetch edilecek.
   const [activeTab, setActiveTab] = useState("Hepsi");
   const [expandedID, setExpandedID] = useState<number | null>(null);
+
+  const tabToType: Record<string, string | null> = {
+    Hepsi: null,
+    Kaynak: "kaynak",
+    "Sanal Sınıf": "sanal-sinif",
+    Sınav: "sinav",
+    Ödev: "odev",
+  };
+
+  // Güvenli normalizasyon (boşluk/altçizgi/büyük-küçük farklarını yok say)
+  const norm = (v?: string) =>
+    (v ?? "")
+      .toLocaleLowerCase("tr-TR")
+      .replace(/\s+/g, "-")
+      .replace(/_+/g, "-");
+
+  const desiredType = tabToType[activeTab];
 
   //useAuth();  course set edilecek. gelince dizi halinde
   const { width } = useWindowDimensions();
@@ -122,10 +145,27 @@ export default function CoursesPage() {
   );
 
   const handlePress = (id: number) => {
-    setExpandedID((prev) => (prev === id ? null : id));
+    setExpandedID((prev) => (prev === id ? null : id)); // accordionlist içerisinde id değeri ile bir tane açık kalacak
   };
 
   // accordionList (false = closed)
+
+  const groupedCoursesData = groupedCourses as unknown as groupedCourses;
+
+  const courseID = selectedCourse?.course_id;
+
+  const courseSelected: CourseDetail[] = useMemo(() => {
+    if (!courseID) return [];
+    const map = groupedCoursesData.grouped_courses;
+    return map[courseID] ?? [];
+  }, [courseID]);
+
+  const maxWeek = useMemo(() => {
+    return courseSelected.reduce((m, c) => {
+      const w = parseInt(c.week) || 0;
+      return w > m ? w : m;
+    }, 0);
+  }, [courseSelected]);
 
   return (
     <PaperProvider>
@@ -133,10 +173,12 @@ export default function CoursesPage() {
         <View style={styles.container}>
           <View style={styles.card}>
             <Text style={styles.detailLabel}>
-              Ders Adı: <Text style={styles.detailText}>{selectedCourse?.name}</Text>
+              Ders Adı:{" "}
+              <Text style={styles.detailText}>{selectedCourse?.name}</Text>
             </Text>
             <Text style={styles.detailLabel}>
-              Program: <Text style={styles.detailText}>{selectedCourse?.program}</Text>
+              Program:{" "}
+              <Text style={styles.detailText}>{selectedCourse?.program}</Text>
             </Text>
           </View>
 
@@ -152,7 +194,7 @@ export default function CoursesPage() {
 
             {/* Sekmeler */}
             <View style={styles.tabHeader}>
-              {["Hepsi", "Kaynak", "Sanal Sınıf", "Sınav", "Ödev"].map(
+              {["Hepsi", "Kaynak", "Sanal Sınıf", "sinav", "Ödev"].map(
                 (tab) => (
                   <TouchableOpacity
                     key={tab}
@@ -179,219 +221,445 @@ export default function CoursesPage() {
             <View style={styles.tabContent}>
               {activeTab === "Hepsi" && (
                 <View style={styles.cardRow}>
-                  <List.Section style={{ backgroundColor: "#000" }}>
-                    <List.Accordion
-                      title="Hafta 1"
-                      titleStyle={{ color: "#333" }}
-                      style={{
-                        backgroundColor: "#f0f0f0",
-                        marginBottom: 0.3,
-                        shadowColor: "#fff",
-                        borderRadius: 5,
-                      }} // dış kutu
-                      theme={{ colors: { background: "#f0f0f0" } }}
-                      left={(props) => <List.Icon {...props} icon="folder" />}
-                      expanded={expandedID === 1}
-                      onPress={() => handlePress(1)}
-                    >
-                      <List.Item
-                        title="Ders Detayı"
-                        titleStyle={{
-                          color: "gray",
-                          fontSize: 18,
-                          marginLeft: -10,
-                        }}
-                        style={{
-                          backgroundColor: "#fff",
-                          paddingVertical: 6,
-                        }}
-                        description={() => (
-                          <View>
-                            <Text style={styles.assignmentInfo}>
-                              Dosya Adı: {selectedCourse?.file_name}
-                            </Text>
-                            <Text style={styles.assignmentInfo}>
-                              Son Teslim: {selectedCourse?.date_start}
-                            </Text>
-                            <Text style={styles.assignmentInfo}>
-                              Açıklama: {selectedCourse?.date_end}
-                            </Text>
-                            <Text style={styles.assignmentInfo}>
-                              Hafta: {selectedCourse?.week}
-                            </Text>
-                          </View>
-                        )}
-                      />
-                    </List.Accordion>
+                  <List.Section>
+                    {Array.from({ length: maxWeek }, (_, i) => {
+                      const weekNumber = i + 1;
+                      const itemsThisWeek = courseSelected.filter(
+                        (c) => (parseInt(c.week) || 0) === weekNumber
+                      );
 
-                    <List.Accordion
-                      title="Hafta 2"
-                      titleStyle={{ color: "#333" }}
-                      style={{ backgroundColor: "#f0f0f0", marginBottom: 0.3 }} // dış kutu
-                      theme={{ colors: { background: "#f0f0f0" } }}
-                      left={(props) => <List.Icon {...props} icon="folder" />}
-                      expanded={expandedID === 2}
-                      onPress={() => handlePress(2)}
-                    >
-                      <List.Item
-                        title="Ders Detayı"
-                        titleStyle={{
-                          color: "gray",
-                          fontSize: 18,
-                          marginLeft: -10,
-                        }}
-                        style={{
-                          backgroundColor: "#fff",
-                          paddingVertical: 6,
-                        }}
-                        description={() => (
-                          <View>
-                            <Text style={styles.assignmentInfo}>
-                              Dosya Adı: {selectedCourse?.file_name}
-                            </Text>
-                            <Text style={styles.assignmentInfo}>
-                              Son Teslim: {selectedCourse?.date_start}
-                            </Text>
-                            <Text style={styles.assignmentInfo}>
-                              Açıklama: {selectedCourse?.date_end}
-                            </Text>
-                            <Text style={styles.assignmentInfo}>
-                              Hafta: {selectedCourse?.week}
-                            </Text>
-                          </View>
-                        )}
-                      />
-                    </List.Accordion>
+                      /* activeTab değerine göre filtreleyecek */
+                      const visibleItems = itemsThisWeek.filter((it) =>
+                        desiredType ? norm(it.type) === desiredType : true
+                      );
 
-                    <List.Accordion
-                      title="Hafta 3"
-                      titleStyle={{ color: "#333" }}
-                      style={{ backgroundColor: "#f0f0f0", marginBottom: 0.3 }} // dış kutu
-                      theme={{ colors: { background: "#f0f0f0" } }}
-                      left={(props) => <List.Icon {...props} icon="folder" />}
-                      expanded={expandedID === 3}
-                      onPress={() => handlePress(3)}
-                    >
-                      <List.Item
-                        title="Ders Detayı"
-                        titleStyle={{
-                          color: "gray",
-                          fontSize: 18,
-                          marginLeft: -10,
-                        }}
-                        style={{
-                          backgroundColor: "#fff",
-                          paddingVertical: 6,
-                        }}
-                        description={() => (
-                          <View>
-                            <Text style={styles.assignmentInfo}>
-                              Hafta:  {selectedCourse?.week}
-                            </Text>
-
-                          </View>
-                        )}
-                      />
-                    </List.Accordion>
+                      return (
+                        <List.Accordion
+                          key={weekNumber}
+                          title={`Hafta ${weekNumber}`}
+                          titleStyle={{ color: "#333" }}
+                          style={{
+                            backgroundColor: "#f0f0f0",
+                            marginBottom: 0.3,
+                            borderRadius: 5,
+                          }}
+                          theme={{ colors: { background: "#f0f0f0" } }}
+                          left={(props) => (
+                            <List.Icon {...props} icon="folder" />
+                          )}
+                          expanded={expandedID === weekNumber}
+                          onPress={() => handlePress(weekNumber)}
+                        >
+                          {itemsThisWeek.length > 0 ? (
+                            visibleItems.map((it) => (
+                              <List.Item
+                                key={it.course_detail_id}
+                                title={it.course_detail || "Ders Detayı"}
+                                titleStyle={{
+                                  color: "gray",
+                                  fontSize: 16,
+                                  marginLeft: -10,
+                                }}
+                                style={{
+                                  backgroundColor: "#fff",
+                                  paddingVertical: 6,
+                                }}
+                                onPress={() => {
+                                  setSelectedDetail(it);
+                                  router.push({
+                                  pathname:'/(tabs)/kaynakDetay',
+                                  params: { id : it.course_detail_id }
+                                })}}
+                                description={() => (
+                                  <View> 
+                                    <Text style={styles.assignmentInfo}>
+                                      Dosya Adı: {it.file_name}
+                                    </Text>
+                                    <Text style={styles.assignmentInfo}>
+                                      Başlangıç: {it.date_start}
+                                    </Text>
+                                    {it.date_end !== "" && (
+                                      <Text style={styles.assignmentInfo}>
+                                        Bitiş: {it.date_end || null}
+                                      </Text>
+                                    )}
+                                    <Text style={styles.assignmentInfo}>
+                                      Tip: {it.type}
+                                    </Text>
+                                  </View>
+                                )}
+                              />
+                            ))
+                          ) : (
+                            <List.Item
+                              title="Bu haftaya ait içerik yok."
+                              titleStyle={{ color: "gray", fontSize: 14 }}
+                              style={{
+                                backgroundColor: "#fff",
+                                paddingVertical: 6,
+                              }}
+                            />
+                          )}
+                        </List.Accordion>
+                      );
+                    })}
                   </List.Section>
                 </View>
               )}
               {activeTab === "Kaynak" && (
                 <View style={styles.cardRow}>
-                  <List.Section style={{ backgroundColor: "#000" }}>
-                    <List.Accordion
-                      title="Hafta 1"
-                      titleStyle={{ color: "#333" }}
-                      style={{
-                        backgroundColor: "#f0f0f0",
-                        marginBottom: 0.3,
-                        shadowColor: "#fff",
-                        borderRadius: 5,
-                      }} // dış kutu
-                      theme={{ colors: { background: "#f0f0f0" } }}
-                      left={(props) => <List.Icon {...props} icon="folder" />}
-                      expanded={expandedID === 1}
-                      onPress={() => handlePress(1)}
-                    >
-                      <List.Item
-                        title="First item"
-                        titleStyle={{ color: "gray", fontSize: 14 }}
-                        style={{ backgroundColor: "#fff", paddingVertical: 6 }}
-                      />
-                      <List.Item
-                        title="Second item"
-                        titleStyle={{ color: "gray", fontSize: 14 }}
-                        style={{ backgroundColor: "#fff", paddingVertical: 6 }}
-                      />
-                    </List.Accordion>
+                  <List.Section>
+                    {Array.from({ length: maxWeek }, (_, i) => {
+                      const weekNumber = i + 1;
+                      const itemsThisWeek = courseSelected.filter(
+                        (c) => (parseInt(c.week) || 0) === weekNumber
+                      );
 
-                    <List.Accordion
-                      title="Hafta 2"
-                      titleStyle={{ color: "#333" }}
-                      style={{ backgroundColor: "#f0f0f0", marginBottom: 0.3 }} // dış kutu
-                      theme={{ colors: { background: "#f0f0f0" } }}
-                      left={(props) => <List.Icon {...props} icon="folder" />}
-                      expanded={expandedID === 2}
-                      onPress={() => handlePress(2)}
-                    >
-                      <List.Item
-                        title="First item"
-                        titleStyle={{ color: "gray", fontSize: 14 }}
-                        style={{ backgroundColor: "#fff", paddingVertical: 6 }}
-                      />
-                      <List.Item
-                        title="Second item"
-                        titleStyle={{ color: "gray", fontSize: 14 }}
-                        style={{ backgroundColor: "#fff", paddingVertical: 6 }}
-                      />
-                    </List.Accordion>
-
-                    {/* <List.Accordion
-                      title="Hafta 3"
-                      titleStyle={{ color: "#333" }}
-                      style={{ backgroundColor: "#f0f0f0", marginBottom: 0.3 }} // dış kutu
-                      theme={{ colors: { background: "#f0f0f0" } }}
-                      left={(props) => <List.Icon {...props} icon="folder" />}
-                      expanded={expandedID === 3}
-                      onPress={() => handlePress(3)}
-                    >
-                      <List.Item
-                        title="First item"
-                        titleStyle={{
-                          color: "gray",
-                          fontSize: 14,
-                          marginLeft: -40,
-                        }}
-                        style={{ backgroundColor: "#fff", paddingVertical: 6 }}
-                      />
-                      <List.Item
-                        title="First item"
-                        titleStyle={{ color: "gray", fontSize: 14 }}
-                        style={{ backgroundColor: "#fff", paddingVertical: 6 }}
-                      />
-                    </List.Accordion> */}
+                      return (
+                        <List.Accordion
+                          key={weekNumber}
+                          title={`Hafta ${weekNumber}`}
+                          titleStyle={{ color: "#333" }}
+                          style={{
+                            backgroundColor: "#f0f0f0",
+                            marginBottom: 0.3,
+                            borderRadius: 5,
+                          }}
+                          theme={{ colors: { background: "#f0f0f0" } }}
+                          left={(props) => (
+                            <List.Icon {...props} icon="folder" />
+                          )}
+                          expanded={expandedID === weekNumber}
+                          onPress={() => handlePress(weekNumber)}
+                        >
+                          {itemsThisWeek.length > 0 ? (
+                            itemsThisWeek
+                              .filter(
+                                (it) =>
+                                  it.type.toLowerCase() ===
+                                  selectedCourse?.type?.toLowerCase()
+                              )
+                              .map((it) => (
+                                <List.Item
+                                  key={it.course_detail_id}
+                                  title={it.course_detail || "Ders Detayı"}
+                                  titleStyle={{
+                                    color: "gray",
+                                    fontSize: 16,
+                                    marginLeft: -10,
+                                  }}
+                                  style={{
+                                    backgroundColor: "#fff",
+                                    paddingVertical: 6,
+                                  }}
+                                  description={() => (
+                                    <View>
+                                      <Text style={styles.assignmentInfo}>
+                                        Dosya Adı: {it.file_name}
+                                      </Text>
+                                      <Text style={styles.assignmentInfo}>
+                                        Tip: {it.type}
+                                      </Text>
+                                    </View>
+                                  )}
+                                />
+                              ))
+                          ) : (
+                            <List.Item
+                              title="Bu haftaya ait içerik yok."
+                              titleStyle={{ color: "gray", fontSize: 14 }}
+                              style={{
+                                backgroundColor: "#fff",
+                                paddingVertical: 6,
+                              }}
+                            />
+                          )}
+                        </List.Accordion>
+                      );
+                    })}
                   </List.Section>
                 </View>
               )}
               {activeTab === "Sanal Sınıf" && (
                 <View style={styles.cardRow}>
-                  <Text style={styles.assignmentInfo}>
-                    Henüz bilgi eklenmedi.
-                  </Text>
+                  <List.Section>
+                    {(() => {
+                      const norm = (v?: string) =>
+                        (v ?? "")
+                          .toLocaleLowerCase("tr-TR")
+                          .trim()
+                          .replace(/\s+|_+/g, "-")
+                          .replace(/-+/g, "-");
+
+                      const desiredType = "sanal-sinif";
+
+                      const typeFiltered = courseSelected.filter(
+                        (it) => norm(it.type) === desiredType
+                      );
+
+                      const maxWeekForType =
+                        typeFiltered.length > 0
+                          ? Math.max(
+                              ...typeFiltered.map((c) => parseInt(c.week) || 0)
+                            )
+                          : 0;
+
+                      // haftalara göre yazdır
+                      return Array.from({ length: maxWeekForType }, (_, i) => {
+                        const weekNumber = i + 1;
+                        const itemsThisWeek = typeFiltered.filter(
+                          (c) => (parseInt(c.week) || 0) === weekNumber
+                        );
+
+                        return (
+                          <List.Accordion
+                            key={weekNumber}
+                            title={`Hafta ${weekNumber}`}
+                            titleStyle={{ color: "#333" }}
+                            style={{
+                              backgroundColor: "#f0f0f0",
+                              marginBottom: 0.3,
+                              borderRadius: 5,
+                            }}
+                            theme={{ colors: { background: "#f0f0f0" } }}
+                            left={(props) => (
+                              <List.Icon {...props} icon="folder" />
+                            )}
+                            expanded={expandedID === weekNumber}
+                            onPress={() => handlePress(weekNumber)}
+                          >
+                            {itemsThisWeek.length > 0 ? (
+                              itemsThisWeek.map((it) => (
+                                <List.Item
+                                  key={it.course_detail_id}
+                                  title={it.course_detail || "Ders Detayı"}
+                                  titleStyle={{
+                                    color: "gray",
+                                    fontSize: 16,
+                                    marginLeft: -10,
+                                  }}
+                                  style={{
+                                    backgroundColor: "#fff",
+                                    paddingVertical: 6,
+                                  }}
+                                  description={() => (
+                                    <View>
+                                      <Text style={styles.assignmentInfo}>
+                                        Dosya Adı: {it.file_name}
+                                      </Text>
+                                      <Text style={styles.assignmentInfo}>
+                                        Tip: {norm(it.type)}
+                                      </Text>
+                                      <Text style={styles.assignmentInfo}>
+                                        Hafta: {it.week}
+                                      </Text>
+                                    </View>
+                                  )}
+                                />
+                              ))
+                            ) : (
+                              <List.Item
+                                title="Bu haftaya ait içerik yok."
+                                titleStyle={{ color: "gray", fontSize: 14 }}
+                                style={{
+                                  backgroundColor: "#fff",
+                                  paddingVertical: 6,
+                                }}
+                              />
+                            )}
+                          </List.Accordion>
+                        );
+                      });
+                    })()}
+                  </List.Section>
                 </View>
               )}
-              {activeTab === "Sınav" && (
+                {activeTab === "sinav" && (
                 <View style={styles.cardRow}>
-                  <Text style={styles.assignmentInfo}>
-                    Henüz bilgi eklenmedi.
-                  </Text>
+                  <List.Section>
+                    {(() => {
+                      const norm = (v?: string) =>
+                        (v ?? "")
+                          .toLocaleLowerCase("tr-TR")
+                          .trim()
+                          .replace(/\s+|_+/g, "-")
+                          .replace(/-+/g, "-");
+
+                      const desiredType = "sinav";
+
+                      const typeFiltered = courseSelected.filter(
+                        (it) => norm(it.type) === desiredType
+                      );
+
+                      const maxWeekForType =
+                        typeFiltered.length > 0
+                          ? Math.max(
+                              ...typeFiltered.map((c) => parseInt(c.week) || 0)
+                            )
+                          : 0;
+
+                      // haftalara göre yazdır
+                      return Array.from({ length: maxWeekForType }, (_, i) => {
+                        const weekNumber = i + 1;
+                        const itemsThisWeek = typeFiltered.filter(
+                          (c) => (parseInt(c.week) || 0) === weekNumber
+                        );
+
+                        return (
+                          <List.Accordion
+                            key={weekNumber}
+                            title={`Hafta ${weekNumber}`}
+                            titleStyle={{ color: "#333" }}
+                            style={{
+                              backgroundColor: "#f0f0f0",
+                              marginBottom: 0.3,
+                              borderRadius: 5,
+                            }}
+                            theme={{ colors: { background: "#f0f0f0" } }}
+                            left={(props) => (
+                              <List.Icon {...props} icon="folder" />
+                            )}
+                            expanded={expandedID === weekNumber}
+                            onPress={() => handlePress(weekNumber)}
+                          >
+                            {itemsThisWeek.length > 0 ? (
+                              itemsThisWeek.map((it) => (
+                                <List.Item
+                                  key={it.course_detail_id}
+                                  title={it.course_detail || "Ders Detayı"}
+                                  titleStyle={{
+                                    color: "gray",
+                                    fontSize: 16,
+                                    marginLeft: -10,
+                                  }}
+                                  style={{
+                                    backgroundColor: "#fff",
+                                    paddingVertical: 6,
+                                  }}
+                                  description={() => (
+                                    <View>
+                                      <Text style={styles.assignmentInfo}>
+                                        Dosya Adı: {it.file_name}
+                                      </Text>
+                                      <Text style={styles.assignmentInfo}>
+                                        Tip: {norm(it.type)}
+                                      </Text>
+                                      <Text style={styles.assignmentInfo}>
+                                        Hafta: {it.week}
+                                      </Text>
+                                    </View>
+                                  )}
+                                />
+                              ))
+                            ) : (
+                              <List.Item
+                                title="Bu haftaya ait içerik yok."
+                                titleStyle={{ color: "gray", fontSize: 14 }}
+                                style={{
+                                  backgroundColor: "#fff",
+                                  paddingVertical: 6,
+                                }}
+                              />
+                            )}
+                          </List.Accordion>
+                        );
+                      });
+                    })()}
+                  </List.Section>
                 </View>
               )}
               {activeTab === "Ödev" && (
                 <View style={styles.cardRow}>
-                  <Text style={styles.assignmentInfo}>
-                    Henüz bilgi eklenmedi.
-                  </Text>
+                  <List.Section>
+                    {(() => {
+                      const norm = (v?: string) =>
+                        (v ?? "")
+                          .toLocaleLowerCase("tr-TR")
+                          .trim()
+                          .replace(/\s+|_+/g, "-")
+                          .replace(/-+/g, "-");
+
+                      const desiredType = "odev";
+
+                      const typeFiltered = courseSelected.filter(
+                        (it) => norm(it.type) === desiredType
+                      );
+
+                      const maxWeekForType =
+                        typeFiltered.length > 0
+                          ? Math.max(
+                              ...typeFiltered.map((c) => parseInt(c.week) || 0)
+                            )
+                          : 0;
+
+                      // haftalara göre yazdır
+                      return Array.from({ length: maxWeekForType }, (_, i) => {
+                        const weekNumber = i + 1;
+                        const itemsThisWeek = typeFiltered.filter(
+                          (c) => (parseInt(c.week) || 0) === weekNumber
+                        );
+
+                        return (
+                          <List.Accordion
+                            key={weekNumber}
+                            title={`Hafta ${weekNumber}`}
+                            titleStyle={{ color: "#333" }}
+                            style={{
+                              backgroundColor: "#f0f0f0",
+                              marginBottom: 0.3,
+                              borderRadius: 5,
+                            }}
+                            theme={{ colors: { background: "#f0f0f0" } }}
+                            left={(props) => (
+                              <List.Icon {...props} icon="folder" />
+                            )}
+                            expanded={expandedID === weekNumber}
+                            onPress={() => handlePress(weekNumber)}
+                          >
+                            {itemsThisWeek.length > 0 ? (
+                              itemsThisWeek.map((it) => (
+                                <List.Item
+                                  key={it.course_detail_id}
+                                  title={it.course_detail || "Ders Detayı"}
+                                  titleStyle={{
+                                    color: "gray",
+                                    fontSize: 16,
+                                    marginLeft: -10,
+                                  }}
+                                  style={{
+                                    backgroundColor: "#fff",
+                                    paddingVertical: 6,
+                                  }}
+                                  description={() => (
+                                    <View>
+                                      <Text style={styles.assignmentInfo}>
+                                        Dosya Adı: {it.file_name}
+                                      </Text>
+                                      <Text style={styles.assignmentInfo}>
+                                        Tip: {norm(it.type)}
+                                      </Text>
+                                      <Text style={styles.assignmentInfo}>
+                                        Hafta: {it.week}
+                                      </Text>
+                                    </View>
+                                  )}
+                                />
+                              ))
+                            ) : (
+                              <List.Item
+                                title="Bu haftaya ait içerik yok."
+                                titleStyle={{ color: "gray", fontSize: 14 }}
+                                style={{
+                                  backgroundColor: "#fff",
+                                  paddingVertical: 6,
+                                }}
+                              />
+                            )}
+                          </List.Accordion>
+                        );
+                      });
+                    })()}
+                  </List.Section>
                 </View>
               )}
             </View>
@@ -546,9 +814,9 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     borderRadius: 3,
     borderWidth: 1,
-    borderColor: '#c4c4c4a2',
+    borderColor: "#c4c4c4a2",
     padding: 10,
-    marginTop:5
+    marginTop: 5,
   },
   assignmentInfo: {
     fontSize: 13,

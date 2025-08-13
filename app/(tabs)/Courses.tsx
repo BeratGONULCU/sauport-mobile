@@ -105,6 +105,7 @@ export default function CoursesPage() {
         sinavCount,
         sanalCount,
         details,
+        type:details[0].type,
         course_detail_id:details[0].course_detail_id,
         academician_id:details[0].academican_id,
         file_name:details[0].file_name,

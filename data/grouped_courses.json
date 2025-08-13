@@ -3,10 +3,9 @@
     "17bd2934-8a36-4632-ab8f-e7a69c4cb54e": [
       {
         "course_detail_id":"a4a9cd63-cb23-42f2-9489-87ab7de709cd",
-        
         "course_id": "17bd2934-8a36-4632-ab8f-e7a69c4cb54e",
-        "academican_id":"30791ad4-7e00-4613-81c4-adb24a06ff57",
-        "course_detail": "sistem yöneticiliği temelleri",
+        "academician_id":"30791ad4-7e00-4613-81c4-adb24a06ff57",
+        "course_detail": "lineer cebir temelleri",
         "code": "VTS1",
         "file_name": "Hafta1-SQL-Giris.pdf",
         "file_type": "pdf",
@@ -14,19 +13,19 @@
         "url": "",
         "week":"1",
         "date_start": "01-03-2025",
-        "date_end": "03-03-2025"
+        "date_end": ""
       },
       {
         "course_detail_id": "a123ffcc-7b0e-49f3-a1cd-44a8ec56fabc",
         "course_id": "17bd2934-8a36-4632-ab8f-e7a69c4cb54e",
-        "academican_id":"30791ad4-7e00-4613-81c4-adb24a06ff57",
-        "course_detail": "SQL Uygulaması Ödevi",
+        "academician_id":"30791ad4-7e00-4613-81c4-adb24a06ff57",
+        "course_detail": "matrisler Ödevi",
         "code": "VTS1",
         "file_name": "odev1-sql.docx",
         "file_type": "docx",
         "type": "odev",
         "url": "",
-        "week":"",
+        "week":"2",
         "date_start": "15-07-2025",
         "date_end": "28-07-2025"
       }
@@ -35,7 +34,7 @@
       {
         "course_detail_id": "e0d7b748-89e2-4b7a-ae5b-4dcf6ffadbd7",
         "course_id": "dc6495c7-3ed8-46e1-8736-70f6b40b5c95",
-        "academican_id":"20045fbd-d7c2-47c2-a186-ba95b46d2c72",
+        "academician_id":"20045fbd-d7c2-47c2-a186-ba95b46d2c72",
         "course_detail": "sistem yöneticiliği temelleri",
         "code": "VTS2",
         "file_name": "sistem hafta 1.pptx",
@@ -44,12 +43,12 @@
         "url": "",
         "week":"1",
         "date_start": "01-03-2025",
-        "date_end": "-03-03-2025"
+        "date_end": ""
       },
       {
         "course_detail_id": "9c81f56d-ddff-45dc-8d1c-f80ad9650de3",
         "course_id": "dc6495c7-3ed8-46e1-8736-70f6b40b5c95",
-        "academican_id":"20045fbd-d7c2-47c2-a186-ba95b46d2c72",
+        "academician_id":"20045fbd-d7c2-47c2-a186-ba95b46d2c72",
         "course_detail": "sistem yöneticiliği temelleri",
         "code": "VTS2",
         "file_name": "sistem hafta 2.pptx",
@@ -58,30 +57,30 @@
         "url": "",
         "week":"2",
         "date_start": "15-07-2025",
-        "date_end": "28-07-2025"
+        "date_end": ""
       },
       {
         "course_detail_id": "fa43be21-3a4d-4461-a21d-ff2039d2eabc",
         "course_id": "dc6495c7-3ed8-46e1-8736-70f6b40b5c95",
-        "academican_id":"20045fbd-d7c2-47c2-a186-ba95b46d2c72",
+        "academician_id":"20045fbd-d7c2-47c2-a186-ba95b46d2c72",
         "course_detail": "Sistem yöneticiliği 1. ara sınavı",
         "code": "VTS2",
         "file_name": "ara-sinav-duyuru.pdf",
         "file_type": "docx",
         "type": "odev",
         "url": "",
-        "week":"",
+        "week":"3",
         "date_start": "15-07-2025",
         "date_end": "28-07-2025"
       },
       {
         "course_detail_id": "bbccdd12-34ff-56aa-7788-99ff001122ab",
         "course_id": "dc6495c7-3ed8-46e1-8736-70f6b40b5c95",
-        "academican_id":"20045fbd-d7c2-47c2-a186-ba95b46d2c72",
+        "academician_id":"20045fbd-d7c2-47c2-a186-ba95b46d2c72",
         "course_detail": "Sistem Yöneticiliği Sanal Sınıf",
         "code": "VTS2",
         "file_name": "sanal ders-1",
-        "file_type": "mp4",
+        "file_type": "",
         "type": "sanal-sinif",
         "url": "",
         "week":"4",
@@ -93,7 +92,7 @@
       {
         "course_detail_id": "70dd3c0a-cf36-4b9a-8ff2-4906150b87dc",
         "course_id": "62d9bb2c-f3d7-4c36-bb71-9adce88c0383",
-        "academican_id":"729594a4-6b14-4ddd-97bc-b094b73163b7",
+        "academician_id":"729594a4-6b14-4ddd-97bc-b094b73163b7",
         "course_detail": "veritabanı dersi detay",
         "code": "BSMT101",
         "file_name": "Hafta1-SQL-Giris.pdf",
@@ -102,26 +101,26 @@
         "url": "",
         "week":"1",
         "date_start": "01-03-2025",
-        "date_end": "03-03-2025"
+        "date_end": ""
       },
       {
         "course_detail_id": "ab12cd34-ef56-7890-abcd-1234567890ef",
         "course_id": "62d9bb2c-f3d7-4c36-bb71-9adce88c0383",
-        "academican_id":"729594a4-6b14-4ddd-97bc-b094b73163b7",
+        "academician_id":"729594a4-6b14-4ddd-97bc-b094b73163b7",
         "course_detail": "veritabanı sınav duyurusu",
         "code": "BSMT101",
         "file_name": "",
         "file_type": "",
         "type": "sinav",
         "url": "",
-        "week":"",
+        "week":"2",
         "date_start": "10-04-2025",
         "date_end": "10-07-2025"
       },
       {
         "course_detail_id": "9012abcd-4567-890a-bcde-12345678efgh",
         "course_id": "62d9bb2c-f3d7-4c36-bb71-9adce88c0383",
-        "academican_id":"729594a4-6b14-4ddd-97bc-b094b73163b7",
+        "academician_id":"729594a4-6b14-4ddd-97bc-b094b73163b7",
         "course_detail": "Veritabanı ek kaynak: ER Diyagramları",
         "code": "BSMT101",
         "file_name": "ek-kaynak-er.pdf",
@@ -129,15 +128,29 @@
         "type": "kaynak",
         "url": "",
         "week":"3",
-        "date_start": "15-07-2025",
-        "date_end": "28-07-2025"
+        "date_start": "10-04-2025",
+        "date_end": ""
+      },      
+      {
+        "course_detail_id": "b53fd6af-fcc3-458b-a1c4-bbf77b96fbe7",
+        "course_id": "62d9bb2c-f3d7-4c36-bb71-9adce88c0383",
+        "academician_id":"729594a4-6b14-4ddd-97bc-b094b73163b7",
+        "course_detail": "Veritabanı inner join",
+        "code": "BSMT101",
+        "file_name": "hafta-5 ders",
+        "file_type": "mp4",
+        "type": "kaynak",
+        "url": "",
+        "week":"5",
+        "date_start": "10-04-2025",
+        "date_end": ""
       }
     ],
     "c4ffb18d-3eac-46c7-b221-e3e8f313fc00": [
       {
         "course_detail_id": "ffba70d5-fcdb-40de-bc4e-cc68f3b39087",
         "course_id": "c4ffb18d-3eac-46c7-b221-e3e8f313fc00",
-        "academican_id":"30791ad4-7e00-4613-81c4-adb24a06ff57",
+        "academician_id":"30791ad4-7e00-4613-81c4-adb24a06ff57",
         "course_detail": "c++ dersi detay",
         "code": "DBMS102",
         "file_name": "Hafta1-fonksiyonlar",
@@ -146,42 +159,42 @@
         "url": "",
         "week":"1",
         "date_start": "01-03-2025",
-        "date_end": "03-03-2025"
+        "date_end": ""
       },
       {
         "course_detail_id": "acbb9321-2bbf-4d3e-a1e4-cc558eeedabc",
         "course_id": "c4ffb18d-3eac-46c7-b221-e3e8f313fc00",
-        "academican_id":"30791ad4-7e00-4613-81c4-adb24a06ff57",
+        "academician_id":"30791ad4-7e00-4613-81c4-adb24a06ff57",
         "course_detail": "c++ fonksiyon ödevi",
         "code": "DBMS102",
         "file_name": "cpp-odev1",
         "file_type": "pdf",
         "type": "odev",
         "url": "",
-        "week":"",
+        "week":"2",
         "date_start": "10-04-2025",
         "date_end": "10-07-2025"
       },
       {
         "course_detail_id": "aaabbbcc-dddd-eeee-ffff-111122223333",
         "course_id": "c4ffb18d-3eac-46c7-b221-e3e8f313fc00",
-        "academican_id":"30791ad4-7e00-4613-81c4-adb24a06ff57",
+        "academician_id":"30791ad4-7e00-4613-81c4-adb24a06ff57",
         "course_detail": "C++ kaynak: nesne tabanlı programlama",
         "code": "BSMT102",
         "file_name": "oop-cpp",
         "file_type": "pdf",
         "type": "kaynak",
-        "url": "",
+        "url": "../assets/docs/test.pdf",
         "week":"3",
         "date_start": "15-07-2025",
-        "date_end": "28-07-2025"
+        "date_end": ""
       }
     ],
     "15b1cc9f-56d4-4056-8e64-1f8df76aa8f6": [
       {
         "course_detail_id": "4ea9a8f4-b74f-4ad5-8fde-c5a44f88db4b",
         "course_id": "15b1cc9f-56d4-4056-8e64-1f8df76aa8f6",
-        "academican_id":"20045fbd-d7c2-47c2-a186-ba95b46d2c72",
+        "academician_id":"20045fbd-d7c2-47c2-a186-ba95b46d2c72",
         "course_detail": "veri madenciliği dersi detay",
         "code": "VM101",
         "file_name": "Hafta1-CNN",
@@ -190,12 +203,12 @@
         "url": "",
         "week":"1",
         "date_start": "01-03-2025",
-        "date_end": "03-03-2025"
+        "date_end": ""
       },
       {
         "course_detail_id": "b33746f9-2fc2-46d2-90f7-fb8828167bbc",
         "course_id": "15b1cc9f-56d4-4056-8e64-1f8df76aa8f6",
-        "academican_id":"20045fbd-d7c2-47c2-a186-ba95b46d2c72",
+        "academician_id":"20045fbd-d7c2-47c2-a186-ba95b46d2c72",
         "course_detail": "veri madenciliği dersi detay",
         "code": "VM101",
         "file_name": "Hafta2-CNN",
@@ -204,16 +217,16 @@
         "url": "",
         "week":"2",
         "date_start": "01-03-2025",
-        "date_end": "03-03-2025"
+        "date_end": ""
       },
       {
         "course_detail_id": "6fe0c897-1884-4558-87ee-2dfb312c5666",
         "course_id": "15b1cc9f-56d4-4056-8e64-1f8df76aa8f6",
-        "academican_id":"20045fbd-d7c2-47c2-a186-ba95b46d2c72",
+        "academician_id":"20045fbd-d7c2-47c2-a186-ba95b46d2c72",
         "course_detail": "veri madenciliği dersi detay",
         "code": "VM101",
         "file_name": "sanal-sınıf ders-1",
-        "file_type": "mp4",
+        "file_type": "",
         "type": "sanal-sinif",
         "url": "",
         "week":"3",
@@ -223,7 +236,7 @@
       {
         "course_detail_id": "ddeeffcc-1100-2233-4455-66778899abcd",
         "course_id": "15b1cc9f-56d4-4056-8e64-1f8df76aa8f6",
-        "academican_id":"20045fbd-d7c2-47c2-a186-ba95b46d2c72",
+        "academician_id":"20045fbd-d7c2-47c2-a186-ba95b46d2c72",
         "course_detail": "veri madenciliği dersi detay",
         "code": "VM101",
         "file_name": "",
@@ -231,6 +244,20 @@
         "type": "sanal-sinif",
         "url": "",
         "week":"4",
+        "date_start": "15-07-2025",
+        "date_end": "28-07-2025"
+      },
+      {
+        "course_detail_id": "ac47b327-cb77-47cd-b361-f322e1f276f2",
+        "course_id": "15b1cc9f-56d4-4056-8e64-1f8df76aa8f6",
+        "academician_id":"20045fbd-d7c2-47c2-a186-ba95b46d2c72",
+        "course_detail": "veri madenciliği dersi ödev",
+        "code": "VM101",
+        "file_name": "",
+        "file_type": "",
+        "type": "odev",
+        "url": "",
+        "week":"2",
         "date_start": "15-07-2025",
         "date_end": "28-07-2025"
       }

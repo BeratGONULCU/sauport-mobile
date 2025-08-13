@@ -50,6 +50,8 @@ interface AuthContextType {
   setAnnouncements: React.Dispatch<React.SetStateAction<Announcements[]>>
   selectedCourse: CourseDetail | null;
   setSelectedCourse: React.Dispatch<React.SetStateAction<CourseDetail | null>>
+  selectedDetail: CourseDetail | null;
+  setSelectedDetail: React.Dispatch<React.SetStateAction<CourseDetail | null>>
   logout: () => void;
 }
 
@@ -62,16 +64,18 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [courses, setCourses] = useState<CourseDetail[]>([]);
   const [announces, setAnnouncements] = useState<Announcements[]>([]);
   const [selectedCourse, setSelectedCourse] = useState<CourseDetail | null>(null);
+  const [selectedDetail, setSelectedDetail] = useState<CourseDetail | null>(null)
 
   const logout = () => {
     setUser(null);
     setCourses([]);
     setAnnouncements([]);
     setSelectedCourse(null);
+    setSelectedDetail(null);
   };
 
   return (
-    <AuthContext.Provider value={{ user, setUser, courses, setCourses , announces , setAnnouncements , selectedCourse ,setSelectedCourse,logout }}>
+    <AuthContext.Provider value={{ user, setUser, courses, setCourses , announces , setAnnouncements , selectedCourse ,setSelectedCourse,selectedDetail,setSelectedDetail, logout }}>
       {children}
     </AuthContext.Provider>
   );
